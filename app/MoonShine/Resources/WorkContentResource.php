@@ -76,7 +76,6 @@ class WorkContentResource extends Resource
                     Image::make('Файл','file'),
 
                     Checkbox::make('Это видео ?', 'is_video')
-
                 ]),
             ]),
 

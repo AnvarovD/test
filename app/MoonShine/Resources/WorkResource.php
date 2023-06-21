@@ -11,6 +11,7 @@ use MoonShine\Decorations\Tab;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\BelongsToMany;
+use MoonShine\Fields\Checkbox;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
@@ -31,7 +32,7 @@ class WorkResource extends Resource
 		    ID::make()->sortable(),
 
             Column::make([
-                Block::make('Создание Статьи', [
+                Block::make('Создание Проекта', [
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
@@ -70,12 +71,56 @@ class WorkResource extends Resource
                         ]),
                     ]),
 
-                    Image::make('macro_image','macro_image'),
-                    Image::make('medium_image','medium_image'),
-                    Image::make('micro_image','micro_image'),
+                    Image::make('macro_image','macro_image')->hideOnIndex(),
+                    Image::make('medium_image','medium_image')->hideOnIndex(),
+                    Image::make('micro_image','micro_image')->hideOnIndex(),
+                ]),
+            ]),
 
-                    BelongsToMany::make('work_id', 'work_id', 'title_ru')
+            Column::make([
+                Block::make('Описания проекта', [
 
+                    Tabs::make([
+                        Tab::make('Заголовок ru', [
+                            Text::make('work_title_ru')
+                                ->fieldContainer(false)
+                                ->required()->hideOnIndex(),
+                        ]),
+
+                        Tab::make('Заголовок en', [
+                            Text::make('work_title_en')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+
+                        Tab::make('Заголовок uz', [
+                            Text::make('work_title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+                    ]),
+
+                    Tabs::make([
+
+                        Tab::make('Под описание uz', [
+                            Text::make("", 'work_sub_title_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Под описание en', [
+                            Text::make("", 'work_sub_title_en')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Под описание ru', [
+                            Text::make("", 'work_sub_title_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+                    ]),
+
+                    Image::make('Файл','file'),
+
+                    Checkbox::make('Это видео ?', 'is_video')
                 ]),
             ]),
             Slug::make('slug')

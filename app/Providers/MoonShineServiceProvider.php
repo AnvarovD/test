@@ -40,15 +40,11 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Work', new WorkResource())
+            MenuItem::make('Проекты', new WorkResource())
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('WorkContent', new WorkContentResource())
-                ->translatable()
-                ->icon('app'),
-
-            MenuItem::make('PostForWork', new PostWorkResource())
+            MenuItem::make('Посты для проектов', new PostWorkResource())
                 ->translatable()
                 ->icon('app'),
 

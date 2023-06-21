@@ -22,14 +22,33 @@ class PostWorkResource extends Resource
 {
 	public static string $model = PostWork::class;
 
-	public static string $title = 'PostWorks';
+	public static string $title = 'Посты для проектов';
 
 	public function fields(): array
 	{
 		return [
 		    ID::make()->sortable(),
             Column::make([
-                Block::make('Создание Статьи', [
+                Block::make('Создание поста', [
+
+                    Tabs::make([
+                        Tab::make('Заголовок ru', [
+                            Text::make('title_ru')
+                                ->fieldContainer(false)->required(),
+                        ]),
+
+                        Tab::make('Заголовок en', [
+                            Text::make('title_en')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+
+                        Tab::make('Заголовок uz', [
+                            Text::make('title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+                    ]),
 
                     Tabs::make([
                         Tab::make('Описания ru', [

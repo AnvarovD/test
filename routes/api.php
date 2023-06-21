@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController\ApiController;
+use App\Http\Controllers\ApiController\WorkApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,12 @@ Route::get('/indexPage', [ApiController::class, 'indexPage']);
 Route::get('/showPage/{slug}', [ApiController::class, 'showPage']);
 Route::get('/getClients', [ApiController::class, 'getClients']);
 Route::get('/showPost/{slug}/{postSlug}', [ApiController::class, 'showPost']);
+
+
+
+
+
+Route::get('/works', [WorkApiController::class, 'index']);
+Route::get('/works/{slug}', [WorkApiController::class, 'show']);
+Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
+
