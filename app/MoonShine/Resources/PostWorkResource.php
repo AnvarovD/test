@@ -34,19 +34,19 @@ class PostWorkResource extends Resource
                     Tabs::make([
                         Tab::make('Заголовок ru', [
                             Text::make('title_ru')
-                                ->fieldContainer(false)->required(),
+                                ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
                             Text::make('title_en')
                                 ->fieldContainer(false)
-                                ->hideOnIndex()->required(),
+                                ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок uz', [
                             Text::make('title_uz')
                                 ->fieldContainer(false)
-                                ->hideOnIndex()->required(),
+                                ->hideOnIndex(),
                         ]),
                     ]),
 
