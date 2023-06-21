@@ -30,7 +30,7 @@ Route::get('/showPost/{slug}/{postSlug}', [ApiController::class, 'showPost']);
 
 
 
-Route::get('/works', [WorkApiController::class, 'index']);
+Route::get('/main', [WorkApiController::class, 'index']);
 Route::get('/works/{slug}', [WorkApiController::class, 'show']);
 Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
 

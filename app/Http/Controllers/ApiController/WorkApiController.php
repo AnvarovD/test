@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\PostWork;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
@@ -33,7 +34,10 @@ class WorkApiController extends Controller
             $work->micro_image = env('APP_URL') . '/storage/' . $work->micro_image;
         });
 
-        return new JsonResponse($works);
+        $news = Page::query()->where('slug', 'news')->with('posts')
+            ->limit(3)->latest()->get();
+
+        return new JsonResponse(["works" => $works, "news" => $news]);
     }
 
 
