@@ -13,8 +13,9 @@ class WorkApiController extends Controller
 {
 
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $limit = $request->query->get('limit') ?? 4;
         $works = Work::query()->select([
             'title_uz',
             'title_ru',
@@ -26,7 +27,7 @@ class WorkApiController extends Controller
             'medium_image',
             'micro_image',
             'slug'
-        ])->get();
+        ])->limit($limit)->get();
 
         $works->map(function (Work $work) {
             $work->macro_image = env('APP_URL') . '/storage/' . $work->macro_image;
