@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 
 class WorkApiController extends Controller
 {
-
-
     public function index(Request $request): JsonResponse
     {
         $limit = $request->query->get('limit') ?? 4;

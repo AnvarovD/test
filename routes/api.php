@@ -21,10 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/indexPage', [ApiController::class, 'indexPage']);
-Route::get('/showPage/{slug}', [ApiController::class, 'showPage']);
+Route::get('/allPage', [ApiController::class, 'indexPage']);
 Route::get('/getClients', [ApiController::class, 'getClients']);
-Route::get('/showPost/{slug}/{postSlug}', [ApiController::class, 'showPost']);
+Route::get('/{slug}/{postSlug}', [ApiController::class, 'showPost']);
 
 
 
