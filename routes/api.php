@@ -21,9 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/allCategories', [ApiController::class, 'indexPage']);
+
 Route::get('/getClients', [ApiController::class, 'getClients']);
-Route::get('/{slug}/{postSlug}', [ApiController::class, 'showPost']);
+Route::get('/indexPage', [ApiController::class, 'indexPage']);
+Route::get('/showPage/{slug}', [ApiController::class, 'showPage']);
+Route::get('/showPost/{slug}/{postSlug}', [ApiController::class, 'showPost']);
+
+
+Route::prefix('pages')->group(function (){
+    Route::get('/', [ApiController::class, 'indexPage']);
+    Route::get('/{slug}', [ApiController::class, 'showPage']);
+    Route::get('/{slug}/{postSlug}', [ApiController::class, 'showPost']);
+});
+
 
 
 
