@@ -37,7 +37,7 @@ class WorkApiController extends Controller
         $news = Page::query()->where('slug', 'news')->with('posts')
             ->limit(3)->latest()->get();
 
-        return new JsonResponse(["works" => $works, "news" => $news]);
+        return new JsonResponse(["works" => $works, "news" => $news->posts]);
     }
 
 
