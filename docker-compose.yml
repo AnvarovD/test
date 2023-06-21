@@ -1,0 +1,78 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: ./docker/php/Dockerfile
+        image: shop
+        container_name: shop-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        environment:
+            - CHOKIDAR_USERPOLLING=true
+            - PHP_IDE_CONFIG=serverName=Docker
+            - DEBUG=1
+        volumes:
+            - ./:/var/www
+        networks:
+            - shop
+
+    mariadb:
+        image: mariadb:10.6.5
+        container_name: mariadb-shop
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 123
+        volumes:
+            - ./docker/my-db:/var/lib/mysql
+        networks:
+            - shop
+
+
+    nginx:
+        image: nginx:alpine
+        container_name: shop-nginx
+        restart: unless-stopped
+        ports:
+            - 9080:80
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx:/etc/nginx/conf.d/
+            - ./docker/nginx/nginx/nginx.conf:/etc/nginx/nginx.conf
+        networks:
+            - shop
+
+#    elasticsearch:
+#        container_name: es-container
+#        image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+#        volumes:
+#            - ./docker/esdata:/usr/share/elasticsearch/data
+#        environment:
+#            - xpack.security.enabled=false
+#            - "discovery.type=single-node"
+#        networks:
+#            - shop
+#        ports:
+#            - 9200:9200
+
+#    kibana:
+#        container_name: kb-container
+#        image: docker.elastic.co/kibana/kibana:7.11.0
+#        environment:
+#            - ELASTICSEARCH_HOSTS=http://es-container:9200
+#        networks:
+#            - shop
+#        depends_on:
+#            - elasticsearch
+#        ports:
+#            - 5601:5601
+
+
+
+networks:
+    shop:
+        driver: bridge
