@@ -28,6 +28,7 @@ class WorkApiController extends Controller
         ])->get();
 
         $works->map(function (Work $work) {
+            $work->file = is_null($work->file) ? '' : env('APP_URL') . '/storage/' . $work->file;
             $work->macro_image = env('APP_URL') . '/storage/' . $work->macro_image;
             $work->medium_image = env('APP_URL') . '/storage/' . $work->medium_image;
             $work->micro_image = env('APP_URL') . '/storage/' . $work->micro_image;
