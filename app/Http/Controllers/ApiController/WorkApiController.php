@@ -44,7 +44,8 @@ class WorkApiController extends Controller
             'work_sub_title_ru',
             'file',
             'is_video',
-            'slug'
+            'slug',
+	    'id'
             ])->where('slug', $slug)
             ->with(
                 [
@@ -54,7 +55,6 @@ class WorkApiController extends Controller
                 ]
             )
             ->first();
-
 
         $works = Work::query()->where('id', '!=', $work->id)->limit(3)->inRandomOrder()->get();
 
