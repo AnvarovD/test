@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
+use App\Models\PostWork;
 use App\Models\Work;
-use App\Models\WorkContent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -28,6 +27,12 @@ class WorkApiController extends Controller
             'slug'
         ])->get();
 
+        $works->map(function (Work $work) {
+            $work->macro_image = env('APP_URL') . '/storage/' . $work->macro_image;
+            $work->medium_image = env('APP_URL') . '/storage/' . $work->medium_image;
+            $work->micro_image = env('APP_URL') . '/storage/' . $work->micro_image;
+        });
+
         return new JsonResponse($works);
     }
 
@@ -44,7 +49,8 @@ class WorkApiController extends Controller
             'work_sub_title_ru',
             'file',
             'is_video',
-            'slug'
+            'slug',
+            'id'
             ])->where('slug', $slug)
             ->with(
                 [
@@ -55,8 +61,25 @@ class WorkApiController extends Controller
             )
             ->first();
 
+        if($work->file) {
+            env('APP_URL') . '/storage/' . $work->file;
+        }
+
+        $work->workPosts->map(function (PostWork $post){
+           $post->imageLink =   is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
+        });
+
 
         $works = Work::query()->where('id', '!=', $work->id)->limit(3)->inRandomOrder()->get();
+
+        $works->map(function (Work $work) {
+            $work->file = is_null($work->file) ? '' : env('APP_URL') . '/storage/' . $work->file;
+            $work->macro_image = is_null($work->macro_image) ? '' : env('APP_URL') . '/storage/' . $work->macro_image;
+            $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
+            $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
+        });
+
+
 
         $work->other_projects = $works;
 
@@ -71,7 +94,26 @@ class WorkApiController extends Controller
             return new JsonResponse(["message" => "NOT_FOUND"], 404);
         }
 
-        $works = Work::query()->where('id', '!=', $work->id)->limit(3)->inRandomOrder()->get();
+        $work->macro_image = is_null($work->macro_image) ? '' : env('APP_URL') . '/storage/' . $work->macro_image;
+        $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
+        $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
+
+        if($work->file) {
+            $work->file = env('APP_URL') . '/storage/' . $work->file;
+        }
+
+        $work->workPosts->map(function (PostWork $post){
+            $post->imageLink =   is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
+        });
+
+        $works = Work::query()->where('id', '!=', $work->id)->inRandomOrder()->get();
+
+        $works->map(function (Work $work) {
+            $work->file = is_null($work->file) ? '' : env('APP_URL') . '/storage/' . $work->file;
+            $work->macro_image = is_null($work->macro_image) ? '' : env('APP_URL') . '/storage/' . $work->macro_image;
+            $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
+            $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
+        });
 
         $work->other_projects = $works;
 
