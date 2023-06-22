@@ -43,6 +43,7 @@ Route::prefix('pages')->group(function (){
 
 
 Route::get('/main', [WorkApiController::class, 'index']);
+Route::get('/works', [WorkApiController::class, 'works']);
 Route::get('/works/{slug}', [WorkApiController::class, 'show']);
 Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
 
