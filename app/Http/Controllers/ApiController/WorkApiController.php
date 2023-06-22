@@ -56,7 +56,7 @@ class WorkApiController extends Controller
 
     public function show(string $slug, Request $request): JsonResponse
     {
-        $limit = $request->query->get('limit') ?? 2;
+        $limit = $request->query->get('limit') ?? null;
         $work = Work::query()->select([
             'work_title_uz',
             'work_title_en',
@@ -72,7 +72,11 @@ class WorkApiController extends Controller
             ->with(
                 [
                     'workPosts' => function ($query) use ($limit) {
+                    if ($limit){
                         $query->limit($limit)->get();
+                    } else{
+                        $query->get();
+                    }
                     }
                 ]
             )
