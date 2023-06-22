@@ -45,9 +45,10 @@ class WorkApiController extends Controller
         $works = Work::query()->latest()->get();
 
         $works->map(function (Work $work) {
-            $work->macro_image = env('APP_URL') . '/storage/' . $work->macro_image;
-            $work->medium_image = env('APP_URL') . '/storage/' . $work->medium_image;
-            $work->micro_image = env('APP_URL') . '/storage/' . $work->micro_image;
+            $work->file = is_null($work->file) ? '' : env('APP_URL') . '/storage/' . $work->file;
+            $work->macro_image = is_null($work->macro_image) ? '' : env('APP_URL') . '/storage/' . $work->macro_image;
+            $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
+            $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
         });
 
         return new JsonResponse(["works" => $works]);
