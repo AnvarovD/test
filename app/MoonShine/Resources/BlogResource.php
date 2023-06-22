@@ -2,6 +2,7 @@
 
 namespace App\MoonShine\Resources;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 
@@ -20,19 +21,18 @@ use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
 
-class PostResource extends Resource
+class BlogResource extends Resource
 {
     public static string $model = Post::class;
 
-    public static string $title = 'Статьи';
+    public static string $title = 'Блог';
 
     public function fields(): array
     {
         return [
             ID::make()->sortable(),
             Column::make([
-                Block::make('Создание Статьи', [
-
+                Block::make('Новости', [
                     Tabs::make([
                         Tab::make('Заголовок ru', [
                             Text::make('title_ru')
@@ -93,6 +93,14 @@ class PostResource extends Resource
                 ->removable()
 
         ];
+    }
+
+    public function query(): \Illuminate\Contracts\Database\Eloquent\Builder
+    {
+        return parent::query()
+            ->whereHas('page', function (Builder $query){
+                $query->where('slug', 'blog');
+            });
     }
 
     public function rules(Model $item): array

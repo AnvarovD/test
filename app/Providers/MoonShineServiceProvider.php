@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AboutPostResource;
+use App\MoonShine\Resources\AboutResource;
+use App\MoonShine\Resources\BlogResource;
+use App\MoonShine\Resources\ClientResource;
+use App\MoonShine\Resources\NewsResource;
 use App\MoonShine\Resources\PageResource;
 use App\MoonShine\Resources\PostResource;
 use App\MoonShine\Resources\PostWorkResource;
@@ -36,7 +41,11 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Стати', new PostResource())
+            MenuItem::make('Новости', new NewsResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Блог', new BlogResource())
                 ->translatable()
                 ->icon('app'),
 
@@ -45,6 +54,18 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->icon('app'),
 
             MenuItem::make('Посты для проектов', new PostWorkResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Наши клиенты', new ClientResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('О нас', new AboutResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Что мы можем - пости', new AboutPostResource())
                 ->translatable()
                 ->icon('app'),
 
