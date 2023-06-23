@@ -24,9 +24,6 @@ class PageResource extends Resource
 
     public static string $title = 'Категории';
 
-    protected bool $createInModal = true;
-    protected bool $editInModal = true;
-    protected bool $showInModal = true;
 
     public function fields(): array
     {
@@ -62,7 +59,8 @@ class PageResource extends Resource
                 ->separator('-')
                 ->hideOnIndex()
                 ->hideOnCreate()
-                ->hideOnDetail(),
+                ->hideOnDetail()
+            ->hideOnUpdate(),
 
         ];
     }
