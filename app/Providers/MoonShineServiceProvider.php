@@ -28,14 +28,14 @@ class MoonShineServiceProvider extends ServiceProvider
 //        ]);
 
         app(MoonShine::class)->menu([
-            MenuGroup::make('moonshine::ui.resource.system', [
-                MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
-                    ->translatable()
-                    ->icon('users'),
-                MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
-                    ->translatable()
-                    ->icon('bookmark'),
-            ])->translatable(),
+//            MenuGroup::make('moonshine::ui.resource.system', [
+//                MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
+//                    ->translatable()
+//                    ->icon('users'),
+//                MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
+//                    ->translatable()
+//                    ->icon('bookmark'),
+//            ])->translatable(),
 
             MenuItem::make('Категории', new PageResource())
                 ->translatable()
