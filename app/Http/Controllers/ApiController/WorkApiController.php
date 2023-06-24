@@ -25,6 +25,14 @@ class WorkApiController extends Controller
             return new JsonResponse(["message" => "NOT_FOUND"], 404);
         }
 
+        $images = [];
+        if (!empty($post->images)) {
+            $post->imageWithLink =  $post->images->map(function ($image) use ($images) {
+                $images[] = env("APP_URL") . '/storage/' . $image;
+                return $images;
+            })->first();
+        }
+
         return  new JsonResponse($post);
     }
     public function about(): JsonResponse
@@ -208,13 +216,13 @@ class WorkApiController extends Controller
 
 
     /**
-     * @param Collection $post
+     * @param Collection $posts
      * @return Collection|Post[]
      */
-    public function getPostImagesWithLinks(Collection $post): array|Collection
+    public function getPostImagesWithLinks(Collection $posts): array|Collection
     {
-        if ($post) {
-            $post->map(function ($post) use (&$images) {
+        if ($posts) {
+            $posts->map(function ($post) use (&$images) {
                 if (!empty($post->images)) {
                     $post->imageWithLink =  $post->images->map(function ($image) use ($images) {
                         $images[] = env("APP_URL") . '/storage/' . $image;
@@ -223,7 +231,7 @@ class WorkApiController extends Controller
                 }
             });
         }
-        return $post;
+        return $posts;
     }
 
     /**
