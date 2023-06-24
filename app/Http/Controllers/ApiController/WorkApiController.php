@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Application;
 use App\Models\Client;
 use App\Models\Page;
 use App\Models\Post;
@@ -21,20 +22,21 @@ class WorkApiController extends Controller
     {
         $post = Post::query()->where('slug', $slug)->first();
 
-        if ($post == null){
+        if ($post == null) {
             return new JsonResponse(["message" => "NOT_FOUND"], 404);
         }
 
         $images = [];
         if (!empty($post->images)) {
-            $post->imageWithLink =  $post->images->map(function ($image) use ($images) {
+            $post->imageWithLink = $post->images->map(function ($image) use ($images) {
                 $images[] = env("APP_URL") . '/storage/' . $image;
                 return $images;
             })->first();
         }
 
-        return  new JsonResponse($post);
+        return new JsonResponse($post);
     }
+
     public function about(): JsonResponse
     {
         $about = About::query()->first();
@@ -84,6 +86,29 @@ class WorkApiController extends Controller
 
         return new JsonResponse($data);
     }
+
+
+    public function applications(Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'name' => ['required', 'string'],
+                'phone' => ['required', 'string'],
+                'organization' => ['required', 'string'],
+                'description' => ['required', 'string'],
+            ]
+        );
+
+        $application = new Application();
+        $application->name = $validated['name'];
+        $application->phone = $validated['phone'];
+        $application->organization = $validated['organization'];
+        $application->description = $validated['description'];
+        $application->status = 'Новая';
+
+        return new JsonResponse(["message" => "Заявка создана успешно"]);
+    }
+
 
     public function index(Request $request): JsonResponse
     {
@@ -224,7 +249,7 @@ class WorkApiController extends Controller
         if ($posts) {
             $posts->map(function ($post) use (&$images) {
                 if (!empty($post->images)) {
-                    $post->imageWithLink =  $post->images->map(function ($image) use ($images) {
+                    $post->imageWithLink = $post->images->map(function ($image) use ($images) {
                         $images[] = env("APP_URL") . '/storage/' . $image;
                         return $images;
                     })->first();
@@ -241,8 +266,8 @@ class WorkApiController extends Controller
     public function getClientIconWithLinks(Collection $clients): array|Collection
     {
         if ($clients) {
-            $clients->map(function (Client $client)  {
-                $client->icon =  env("APP_URL") . '/storage/' . $client->icon;
+            $clients->map(function (Client $client) {
+                $client->icon = env("APP_URL") . '/storage/' . $client->icon;
             });
         }
         return $clients;
