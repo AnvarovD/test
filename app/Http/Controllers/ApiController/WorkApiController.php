@@ -93,7 +93,7 @@ class WorkApiController extends Controller
         $validated = $request->validate(
             [
                 'name' => ['required', 'string'],
-                'phone' => ['required', 'string'],
+                'phone_or_email' => ['required', 'string'],
                 'organization' => ['required', 'string'],
                 'description' => ['required', 'string'],
             ]
@@ -101,7 +101,7 @@ class WorkApiController extends Controller
 
         $application = new Application();
         $application->name = $validated['name'];
-        $application->phone = $validated['phone'];
+        $application->phone = $validated['phone_or_email'];
         $application->organization = $validated['organization'];
         $application->description = $validated['description'];
         $application->status = 'Новая';

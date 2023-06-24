@@ -22,7 +22,7 @@ class ApplicationResource extends Resource
 		return [
 		    ID::make()->sortable(),
             Text::make('Имя', 'name'),
-            Text::make('Номер телефона', 'phone'),
+            Text::make('Номер телефона/Email', 'phone'),
             Text::make('Организация', 'organization'),
             Text::make('Описания', 'description'),
             Select::make('Статус', 'status')
