@@ -59,7 +59,7 @@ class WorkApiController extends Controller
                 'footer_title_ru' => $about->footer_title_ru,
                 'footer_subtitle_ru' => $about->footer_subtitle_ru,
                 'footer_description_ru' => $about->footer_description_ru,
-                'footer_image' => $this->getFooterImage($about->footer_image),
+                'imageWithLink' => $this->getFooterImage($about->footer_image),
             ]
         ];
 
