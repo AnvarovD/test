@@ -18,7 +18,7 @@ class WorkApiController extends Controller
     public function about(): JsonResponse
     {
         $about = About::query()->first();
-        $posts = Post::query()->whereNull('work_id')->get();
+        $posts = Post::query()->whereNull('page_id')->get();
         $clients = Client::all();
 
         $data = [
