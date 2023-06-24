@@ -119,7 +119,7 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
-                    File::make('Файл','file')->accept(),
+                    File::make('Файл','file'),
 
                     Checkbox::make('Это видео ?', 'is_video')
                 ]),
