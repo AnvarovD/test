@@ -30,6 +30,16 @@ class WorkResource extends Resource
 
 	public function fields(): array
 	{
+
+        $file = Image::make("Рисунки", "images")
+            ->dir("images")
+            ->multiple()
+            ->removable();
+        if ($this->getModel()->is_video){
+            $file = Image::make("Рисунки", "images")
+                ->dir("1QU6obou6x4qOWF9rHlg15yJMnasU2q0y8gENW2V.png");
+        }
+
 		$data = [
 		    ID::make()->sortable(),
 
@@ -119,6 +129,9 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
+
+
+
                     File::make('Файл','file'),
 
                     Checkbox::make('Это видео ?', 'is_video')

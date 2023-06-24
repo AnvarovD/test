@@ -29,6 +29,11 @@ class NewsResource extends Resource
 
     public function fields(): array
     {
+
+//        if ($this->getModel()->is_video){
+//            $pp = true;
+//        }
+
         return [
             ID::make()->sortable(),
             Column::make([
