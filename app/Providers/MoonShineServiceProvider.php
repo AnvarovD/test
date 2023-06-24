@@ -7,6 +7,7 @@ use App\MoonShine\Resources\AboutResource;
 use App\MoonShine\Resources\ApplicationResource;
 use App\MoonShine\Resources\BlogResource;
 use App\MoonShine\Resources\ClientResource;
+use App\MoonShine\Resources\FileResource;
 use App\MoonShine\Resources\NewsResource;
 use App\MoonShine\Resources\PageResource;
 use App\MoonShine\Resources\PostResource;
@@ -71,6 +72,10 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->icon('app'),
 
             MenuItem::make('Заявки', new ApplicationResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Файлы', new FileResource())
                 ->translatable()
                 ->icon('app'),
 

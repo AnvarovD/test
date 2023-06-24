@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Application;
 use App\Models\Client;
+use App\Models\File;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostWork;
@@ -18,6 +19,10 @@ class WorkApiController extends Controller
 {
 
 
+    public function files(): JsonResponse
+    {
+        return new JsonResponse(File::all());
+    }
     public function post(string $slug): JsonResponse
     {
         $post = Post::query()->where('slug', $slug)->first();
