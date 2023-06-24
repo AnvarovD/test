@@ -2,6 +2,7 @@
 
 namespace App\MoonShine\Resources;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Work;
 
@@ -12,6 +13,7 @@ use MoonShine\Decorations\Tabs;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\BelongsToMany;
 use MoonShine\Fields\Checkbox;
+use MoonShine\Fields\File;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
@@ -28,7 +30,7 @@ class WorkResource extends Resource
 
 	public function fields(): array
 	{
-		return [
+		$data = [
 		    ID::make()->sortable(),
 
             Column::make([
@@ -117,8 +119,7 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
-
-                    Image::make('Файл','file'),
+                    File::make('Файл','file')->accept(),
 
                     Checkbox::make('Это видео ?', 'is_video')
                 ]),
@@ -132,6 +133,7 @@ class WorkResource extends Resource
                 ->hideOnCreate()
                 ->hideOnUpdate(),
         ];
+        return $data;
 	}
 
 	public function rules(Model $item): array

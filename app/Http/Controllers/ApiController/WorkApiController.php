@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Page;
 use App\Models\PostWork;
 use App\Models\Work;
@@ -11,6 +12,11 @@ use Illuminate\Http\Request;
 
 class WorkApiController extends Controller
 {
+
+    public function about(): JsonResponse
+    {
+        return new JsonResponse(About::all());
+    }
     public function index(Request $request): JsonResponse
     {
         $limit = $request->query->get('limit') ?? 4;

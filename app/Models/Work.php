@@ -30,6 +30,8 @@ class Work extends Model
         return $this->hasMany(PostWork::class);
     }
 
+
+
 //    protected function macroImage(): Attribute
 //    {
 //        return Attribute::make(

@@ -2,6 +2,8 @@
 
 namespace App\MoonShine\Resources;
 
+use App\Models\Work;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\WorkContent;
 
@@ -23,7 +25,10 @@ class WorkContentResource extends Resource
 
 	public static string $title = 'WorkContents';
 
-	public function fields(): array
+    /**
+     * @throws \Throwable
+     */
+    public function fields(): array
 	{
 		return [
 		    ID::make()->sortable(),
@@ -78,13 +83,18 @@ class WorkContentResource extends Resource
                     Checkbox::make('Это видео ?', 'is_video')
                 ]),
             ]),
-
         ];
 	}
 
 	public function rules(Model $item): array
 	{
 	    return [];
+    }
+
+    public function query(): \Illuminate\Contracts\Database\Eloquent\Builder
+    {
+        return parent::query()
+            ->where('is_video', 1);
     }
 
     public function search(): array
