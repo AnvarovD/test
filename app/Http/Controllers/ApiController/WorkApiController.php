@@ -11,6 +11,7 @@ use App\Models\PostWork;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class WorkApiController extends Controller
 {
@@ -19,7 +20,8 @@ class WorkApiController extends Controller
     {
         $about = About::query()->first();
         $posts = Post::query()->whereNull('page_id')->get();
-        $clients = Client::all();
+        $posts = $this->getPostImagesWithLinks($posts);
+        $clients = $this->getClientIconWithLinks(Client::all());
 
         $data = [
             "banner" => [
@@ -57,7 +59,7 @@ class WorkApiController extends Controller
                 'footer_title_ru' => $about->footer_title_ru,
                 'footer_subtitle_ru' => $about->footer_subtitle_ru,
                 'footer_description_ru' => $about->footer_description_ru,
-                'footer_image' => $about->footer_image,
+                'footer_image' => $this->getFooterImage($about->footer_image),
             ]
         ];
 
@@ -191,5 +193,45 @@ class WorkApiController extends Controller
         $work->other_projects = $works;
 
         return new JsonResponse($work);
+    }
+
+
+    /**
+     * @param Collection $post
+     * @return Collection|Post[]
+     */
+    public function getPostImagesWithLinks(Collection $post): array|Collection
+    {
+        if ($post) {
+            $post->map(function ($post) use (&$images) {
+                if (!empty($post->images)) {
+                    $post->imageWithLink =  $post->images->map(function ($image) use ($images) {
+                        $images[] = env("APP_URL") . '/storage/' . $image;
+                        return $images;
+                    })->first();
+                }
+            });
+        }
+        return $post;
+    }
+
+    /**
+     * @param Collection $clients
+     * @return Collection|Post[]
+     */
+    public function getClientIconWithLinks(Collection $clients): array|Collection
+    {
+        if ($clients) {
+            $clients->map(function (Client $client)  {
+                $client->icon =  env("APP_URL") . '/storage/' . $client->icon;
+            });
+        }
+        return $clients;
+    }
+
+
+    public function getFooterImage(string $image): string
+    {
+        return env("APP_URL") . '/storage/' . $image;
     }
 }
