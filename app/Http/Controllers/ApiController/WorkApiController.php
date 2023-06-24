@@ -22,7 +22,7 @@ class WorkApiController extends Controller
     public function files(): JsonResponse
     {
        $files = File::all()->map(function (File $file) {
-           return $file->file_path = $this->getFilePath($file->file_path);
+            $file->file_path = $this->getFilePath($file->file_path);
         });
         return new JsonResponse($files);
     }
