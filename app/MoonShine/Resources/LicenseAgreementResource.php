@@ -17,7 +17,7 @@ class LicenseAgreementResource extends Resource
 {
     public static string $model = LicenseAgreement::class;
 
-    public static string $title = 'LicenseAgreements';
+    public static string $title = 'Лицензионное соглашение';
 
     public function fields(): array
     {
@@ -26,17 +26,16 @@ class LicenseAgreementResource extends Resource
             Tabs::make([
                 Tab::make('Описание uz', [
                     TinyMce::make('description_uz')
-                    ,
+                        ->hideOnIndex(),
                 ]),
 
                 Tab::make('Описание ru', [
-                    TinyMce::make('description_ru')
-                        ->hideOnIndex(),
+                    TinyMce::make('description_ru'),
                 ]),
 
                 Tab::make('Описание en', [
                     TinyMce::make('description_en')
-                        ,
+                        ->hideOnIndex(),
                 ]),
             ]),
         ];
