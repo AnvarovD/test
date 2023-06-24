@@ -38,12 +38,15 @@ Route::prefix('pages')->group(function (){
 });
 
 
+Route::prefix('/about')->group(function (){
+    Route::get('/', [WorkApiController::class, 'about']);
+    Route::get('/{slug}', [WorkApiController::class, 'post']);
+});
 
 
 
 
 Route::get('/main', [WorkApiController::class, 'index']);
-Route::get('/about', [WorkApiController::class, 'about']);
 Route::get('/works', [WorkApiController::class, 'works']);
 Route::get('/works/{slug}', [WorkApiController::class, 'show']);
 Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
