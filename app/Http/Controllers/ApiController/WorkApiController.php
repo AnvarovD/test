@@ -39,8 +39,7 @@ class WorkApiController extends Controller
         $images = [];
         if (!empty($post->images)) {
             $post->imageWithLink = $post->images->map(function ($image) use ($images) {
-                $images[] = env("APP_URL") . '/storage/' . $image;
-                return $images;
+                return  env("APP_URL") . '/storage/' . $image;
             })->first();
         }
 
