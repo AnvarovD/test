@@ -30,7 +30,7 @@ class WorkApiController extends Controller
     }
     public function post(string $slug): JsonResponse
     {
-        $post = Post::query()->where('slug', $slug)->first();
+        $post = Post::query()->whereNull('page_id')->where('slug', $slug)->first();
 
         if ($post == null) {
             return new JsonResponse(["message" => "NOT_FOUND"], 404);
