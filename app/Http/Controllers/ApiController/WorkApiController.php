@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Client;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\PostWork;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
@@ -15,8 +17,53 @@ class WorkApiController extends Controller
 
     public function about(): JsonResponse
     {
-        return new JsonResponse(About::all());
+        $about = About::query()->first();
+        $posts = Post::query()->whereNull('work_id')->get();
+        $clients = Client::all();
+
+        $data = [
+            "banner" => [
+                'banner_title_en' => $about->banner_title_en,
+                'banner_subtitle_en' => $about->banner_subtitle_en,
+                'banner_description_en' => $about->banner_description_en,
+                'banner_title_uz' => $about->banner_title_uz,
+                'banner_subtitle_uz' => $about->banner_subtitle_uz,
+                'banner_description_uz' => $about->banner_description_uz,
+                'banner_title_ru' => $about->banner_title_ru,
+                'banner_subtitle_ru' => $about->banner_subtitle_ru,
+                'banner_description_ru' => $about->banner_description_ru,
+                'banner_image' => $about->banner_image,
+            ],
+            "content" => [
+                'content_title_en' => $about->content_title_en,
+                'content_subtitle_en' => $about->content_subtitle_en,
+                'content_description_en' => $about->content_description_en,
+                'content_title_uz' => $about->content_title_uz,
+                'content_subtitle_uz' => $about->content_subtitle_uz,
+                'content_description_uz' => $about->content_description_uz,
+                'content_title_ru' => $about->content_title_ru,
+                'content_subtitle_ru' => $about->content_subtitle_ru,
+                'content_description_ru' => $about->content_description_ru,
+                'posts' => $posts
+            ],
+            "clients" => $clients,
+            "footer" => [
+                'footer_title_en' => $about->footer_title_en,
+                'footer_subtitle_en' => $about->footer_subtitle_en,
+                'footer_description_en' => $about->footer_description_en,
+                'footer_title_uz' => $about->footer_title_uz,
+                'footer_subtitle_uz' => $about->footer_subtitle_uz,
+                'footer_description_uz' => $about->footer_description_uz,
+                'footer_title_ru' => $about->footer_title_ru,
+                'footer_subtitle_ru' => $about->footer_subtitle_ru,
+                'footer_description_ru' => $about->footer_description_ru,
+                'footer_image' => $about->footer_image,
+            ]
+        ];
+
+        return new JsonResponse($data);
     }
+
     public function index(Request $request): JsonResponse
     {
         $limit = $request->query->get('limit') ?? 4;
@@ -74,26 +121,26 @@ class WorkApiController extends Controller
             'is_video',
             'slug',
             'id'
-            ])->where('slug', $slug)
+        ])->where('slug', $slug)
             ->with(
                 [
                     'workPosts' => function ($query) use ($limit) {
-                    if ($limit){
-                        $query->limit($limit)->get();
-                    } else{
-                        $query->get();
-                    }
+                        if ($limit) {
+                            $query->limit($limit)->get();
+                        } else {
+                            $query->get();
+                        }
                     }
                 ]
             )
             ->first();
 
-        if($work->file) {
+        if ($work->file) {
             $work->file = is_null($work->file) ? '' : env('APP_URL') . '/storage/' . $work->file;
         }
 
-        $work->workPosts->map(function (PostWork $post){
-           $post->imageLink =   is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
+        $work->workPosts->map(function (PostWork $post) {
+            $post->imageLink = is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
         });
 
 
@@ -105,7 +152,6 @@ class WorkApiController extends Controller
             $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
             $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
         });
-
 
 
         $work->other_projects = $works;
@@ -125,12 +171,12 @@ class WorkApiController extends Controller
         $work->medium_image = is_null($work->medium_image) ? '' : env('APP_URL') . '/storage/' . $work->medium_image;
         $work->micro_image = is_null($work->micro_image) ? '' : env('APP_URL') . '/storage/' . $work->micro_image;
 
-        if($work->file) {
+        if ($work->file) {
             $work->file = env('APP_URL') . '/storage/' . $work->file;
         }
 
-        $work->workPosts->map(function (PostWork $post){
-            $post->imageLink =   is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
+        $work->workPosts->map(function (PostWork $post) {
+            $post->imageLink = is_null($post->image) ? '' : env('APP_URL') . '/storage/' . $post->image;
         });
 
         $works = Work::query()->where('id', '!=', $work->id)->inRandomOrder()->get();
