@@ -21,7 +21,10 @@ class WorkApiController extends Controller
 
     public function files(): JsonResponse
     {
-        return new JsonResponse(File::all());
+       $files = File::all()->map(function (File $file) {
+            $file->file_path = $this->getFilePath($file->file_path);
+        });
+        return new JsonResponse($files);
     }
     public function post(string $slug): JsonResponse
     {
@@ -282,5 +285,10 @@ class WorkApiController extends Controller
     public function getFooterImage(string $image): string
     {
         return env("APP_URL") . '/storage/' . $image;
+    }
+
+    public function getFilePath(string $path)
+    {
+        return env("APP_URL") . '/storage/' . $path;
     }
 }
