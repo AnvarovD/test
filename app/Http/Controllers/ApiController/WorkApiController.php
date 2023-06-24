@@ -7,6 +7,7 @@ use App\Models\About;
 use App\Models\Application;
 use App\Models\Client;
 use App\Models\File;
+use App\Models\LicenseAgreement;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostWork;
@@ -97,6 +98,10 @@ class WorkApiController extends Controller
     }
 
 
+    public function getLicenseAgreement()
+    {
+        return new JsonResponse(LicenseAgreement::all());
+    }
     public function applications(Request $request)
     {
         $validated = $request->validate(
