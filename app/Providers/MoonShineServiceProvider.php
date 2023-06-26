@@ -7,6 +7,8 @@ use App\MoonShine\Resources\AboutResource;
 use App\MoonShine\Resources\ApplicationResource;
 use App\MoonShine\Resources\BlogResource;
 use App\MoonShine\Resources\ClientResource;
+use App\MoonShine\Resources\ContactInfoResource;
+use App\MoonShine\Resources\ContactResource;
 use App\MoonShine\Resources\FileResource;
 use App\MoonShine\Resources\LicenseAgreementResource;
 use App\MoonShine\Resources\NewsResource;
@@ -89,6 +91,13 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
+            MenuItem::make('Контакты', new ContactResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Контактная информация', new ContactInfoResource())
+                ->translatable()
+                ->icon('app'),
 
 //            MenuItem::make('Documentation', 'https://laravel.com')
 //                ->badge(fn() => 'Check'),
