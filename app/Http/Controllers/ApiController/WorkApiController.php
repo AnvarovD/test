@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Application;
 use App\Models\Client;
+use App\Models\Contact;
+use App\Models\ContactInfo;
 use App\Models\File;
 use App\Models\LicenseAgreement;
 use App\Models\Page;
@@ -102,6 +104,17 @@ class WorkApiController extends Controller
     }
 
 
+    public function contacts()
+    {
+        $contact = Contact::query()->first();
+        $contactInfos = ContactInfo::query()->get();
+        $data = [
+         'contact' =>  $contact,
+          'contactInfos' =>  $contactInfos
+        ];
+
+        return new JsonResponse($data);
+    }
     public function getLicenseAgreement(): JsonResponse
     {
         return new JsonResponse(LicenseAgreement::query()->first());
