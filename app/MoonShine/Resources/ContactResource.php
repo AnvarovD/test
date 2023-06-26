@@ -23,7 +23,7 @@ class ContactResource extends Resource
             Text::make('адрес uz', 'address_uz'),
             Text::make('адрес ru', 'address_ru'),
             Text::make('адрес en', 'address_en'),
-            Text::make('Линк для локации', 'location'),
+            Text::make('Линк для локации', 'location')->hideOnIndex(),
             Text::make('Email', 'email'),
             Text::make('Номер телефона', 'phone'),
         ];
