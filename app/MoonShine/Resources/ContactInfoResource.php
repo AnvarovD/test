@@ -32,12 +32,12 @@ class ContactInfoResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'title_uz' => ['required', 'title_uz'],
-            'title_ru' => ['required', 'title_ru'],
-            'title_en' => ['required', 'title_en'],
-            'person_name' => ['required', 'person_name'],
-            'email' => ['required', 'email'],
-            'phone' => ['required', 'phone'],
+            'title_uz' => ['required', 'string'],
+            'title_ru' => ['required', 'string'],
+            'title_en' => ['required', 'string'],
+            'person_name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'phone' => ['required', 'string'],
         ];
     }
 
