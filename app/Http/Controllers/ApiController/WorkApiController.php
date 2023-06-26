@@ -104,7 +104,7 @@ class WorkApiController extends Controller
 
     public function getLicenseAgreement(): JsonResponse
     {
-        return new JsonResponse(LicenseAgreement::all());
+        return new JsonResponse(LicenseAgreement::query()->first());
     }
     public function applications(Request $request)
     {
