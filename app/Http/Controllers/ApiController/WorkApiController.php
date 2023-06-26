@@ -11,6 +11,7 @@ use App\Models\LicenseAgreement;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostWork;
+use App\Models\SocialNetwork;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -20,13 +21,17 @@ class WorkApiController extends Controller
 {
 
 
-    public function files(): JsonResponse
+    public function filesAndNetworks(): JsonResponse
     {
        $files = File::all();
+       $networks = SocialNetwork::all();
        $files->map(function (File $file) {
            $file->file = $this->getFilePath($file->file_path);
        });
-        return new JsonResponse($files);
+        return new JsonResponse([
+          'files' =>  $files,
+            'socialNetworks' => $networks
+        ]);
     }
     public function post(string $slug): JsonResponse
     {

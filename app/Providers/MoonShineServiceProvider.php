@@ -13,6 +13,7 @@ use App\MoonShine\Resources\NewsResource;
 use App\MoonShine\Resources\PageResource;
 use App\MoonShine\Resources\PostResource;
 use App\MoonShine\Resources\PostWorkResource;
+use App\MoonShine\Resources\SocialNetworkResource;
 use App\MoonShine\Resources\WorkContentResource;
 use App\MoonShine\Resources\WorkResource;
 use Illuminate\Support\ServiceProvider;
@@ -81,6 +82,10 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->icon('app'),
 
             MenuItem::make('Лицензионное соглашение', new LicenseAgreementResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Социальная сети', new SocialNetworkResource())
                 ->translatable()
                 ->icon('app'),
 
