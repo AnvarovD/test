@@ -107,6 +107,11 @@ class WorkApiController extends Controller
     public function contacts()
     {
         $contact = Contact::query()->first();
+        $contact->location = "<iframe src='{$contact->location}'
+        width='600' height='450' style='border:0;'
+         allowfullscreen='' loading='lazy'
+         referrerpolicy='no-referrer-when-downgrade'></iframe>";
+
         $contactInfos = ContactInfo::query()->get();
         $data = [
          'contact' =>  $contact,
