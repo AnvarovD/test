@@ -73,7 +73,7 @@ class PostWorkResource extends Resource
 
 
                     BelongsTo::make(
-                        'Work',
+                        'Проект',
                         'work_id',
                         'title_ru'
                     ),
