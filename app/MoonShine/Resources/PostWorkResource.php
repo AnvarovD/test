@@ -33,7 +33,7 @@ class PostWorkResource extends Resource
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('title_ru')
+                            Text::make('Заголовок ru','title_ru')
                                 ->fieldContainer(false),
                         ]),
 
@@ -51,9 +51,11 @@ class PostWorkResource extends Resource
                     ]),
 
                     Tabs::make([
-                        Tab::make('Описания ru', [
+                        Tab::make('Описания uz', [
                             TinyMce::make('description_uz')
-                                ->fieldContainer(false)->required(),
+                                ->fieldContainer(false)
+                                ->hideOnIndex()
+                                ->required(),
                         ]),
 
                         Tab::make('Описания en', [
@@ -62,10 +64,10 @@ class PostWorkResource extends Resource
                                 ->hideOnIndex()->required(),
                         ]),
 
-                        Tab::make('Описания uz', [
-                            TinyMce::make('description_ru')
+                        Tab::make('Описания ru', [
+                            TinyMce::make('Описания ru','description_ru')
                                 ->fieldContainer(false)
-                                ->hideOnIndex()->required(),
+                                ->required(),
                         ]),
                     ]),
 

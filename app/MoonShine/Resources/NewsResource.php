@@ -37,7 +37,7 @@ class NewsResource extends Resource
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('title_ru')
+                            Text::make('Заголовок ru', 'title_ru')
                                 ->fieldContainer(false),
                         ]),
 

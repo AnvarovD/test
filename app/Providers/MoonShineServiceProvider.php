@@ -87,7 +87,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Социальная сети', new SocialNetworkResource())
+            MenuItem::make('Социальнее сети', new SocialNetworkResource())
                 ->translatable()
                 ->icon('app'),
 

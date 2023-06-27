@@ -30,7 +30,7 @@ class LicenseAgreementResource extends Resource
                 ]),
 
                 Tab::make('Описание ru', [
-                    TinyMce::make('description_ru'),
+                    TinyMce::make('Описание ru','description_ru'),
                 ]),
 
                 Tab::make('Описание en', [

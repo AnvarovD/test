@@ -38,14 +38,14 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('banner_title_ru')
-                                ->fieldContainer(false)
-                                ->hideOnIndex(),
+                            Text::make('Заголовок ru','banner_title_ru')
+                                ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
                             Text::make('banner_title_en')
-                                ->fieldContainer(false),
+                                ->fieldContainer(false)
+                            ->hideOnIndex(),
                         ]),
                     ]),
 
@@ -81,14 +81,14 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('content_title_ru')
-                                ->fieldContainer(false)
-                                ->hideOnIndex(),
+                            Text::make('Заголовок ru','content_title_ru')
+                                ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
                             Text::make('content_title_en')
-                                ->fieldContainer(false),
+                                ->fieldContainer(false)
+                            ->hideOnIndex(),
                         ]),
                     ]),
 
@@ -125,14 +125,14 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('footer_title_ru')
-                                ->fieldContainer(false)
-                                ->hideOnIndex(),
+                            Text::make('Заголовок ru','footer_title_ru')
+                                ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
                             Text::make('footer_title_en')
-                                ->fieldContainer(false),
+                                ->fieldContainer(false)
+                            ->hideOnIndex(),
                         ]),
                     ]),
 
@@ -155,7 +155,7 @@ class AboutResource extends Resource
 
 
                     ]),
-                    Image::make('Banner image', 'footer_image')
+                    Image::make('Рисунок для фотора', 'footer_image')
                 ]),
 
 

@@ -24,7 +24,7 @@ class WorkResource extends Resource
 {
     public static string $model = Work::class;
 
-    public static string $title = 'Works';
+    public static string $title = 'Проекты';
 
     public function fields(): array
     {
@@ -36,7 +36,7 @@ class WorkResource extends Resource
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('title_ru')
+                            Text::make('Заголовок ru', 'title_ru')
                                 ->fieldContainer(false)->required(),
                         ]),
 

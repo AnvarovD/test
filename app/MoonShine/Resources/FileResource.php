@@ -26,7 +26,7 @@ class FileResource extends Resource
             ID::make()->sortable(),
             Tabs::make([
                 Tab::make('Заголовок ru', [
-                    Text::make('title_ru')
+                    Text::make('Заголовок ru', 'title_ru')
                         ->fieldContainer(false),
                 ]),
 
@@ -49,7 +49,7 @@ class FileResource extends Resource
                 ]),
 
                 Tab::make('Описание ru', [
-                    TinyMce::make('description_ru'),
+                    TinyMce::make('Описание ru','description_ru'),
                 ]),
 
                 Tab::make('Описание en', [
