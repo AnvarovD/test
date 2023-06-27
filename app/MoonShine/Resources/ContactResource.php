@@ -4,7 +4,7 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Contact;
-
+use Illuminate\Support\Facades\Route;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
@@ -16,6 +16,7 @@ class ContactResource extends Resource
 
     public static string $title = 'Контакты';
 
+    protected string $routeAfterSave = 'show'; // index, show, edit
     public function fields(): array
     {
         return [
@@ -57,4 +58,23 @@ class ContactResource extends Resource
             FiltersAction::make(trans('moonshine::ui.filters')),
         ];
     }
+
+//    public function resolveRoutes(): void
+//    {
+//        parent::resolveRoutes();
+//       $this->route('show', Contact::query()->first()->id);
+//    }
+//        parent::resolveRoutes();
+//
+//        Route::prefix('resource')->group(function (): void {
+//            Route::get("{$this->uriKey()}/index", function (Contact $item) {
+//                dd($this->uriKey());
+//
+//                dd($item);
+//                $item->restore();
+//
+//                return redirect()->back();
+//            });
+//        });
+//    }
 }
