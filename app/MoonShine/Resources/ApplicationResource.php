@@ -13,14 +13,14 @@ use MoonShine\Actions\FiltersAction;
 
 class ApplicationResource extends Resource
 {
-	public static string $model = Application::class;
+    public static string $model = Application::class;
 
-	public static string $title = 'Заявки';
+    public static string $title = 'Заявки';
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
             Text::make('Имя', 'name'),
             Text::make('Номер телефона/Email', 'phone'),
             Text::make('Организация', 'organization'),
@@ -32,11 +32,17 @@ class ApplicationResource extends Resource
                     'Закрыто' => 'Закрыто',
                 ])
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [];
+    public function rules(Model $item): array
+    {
+        return [
+            'name' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'organization' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'status' => ['required', 'string'],
+        ];
     }
 
     public function search(): array

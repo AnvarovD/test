@@ -13,22 +13,25 @@ use MoonShine\Actions\FiltersAction;
 
 class ClientResource extends Resource
 {
-	public static string $model = Client::class;
+    public static string $model = Client::class;
 
-	public static string $title = 'Наши партнёры';
+    public static string $title = 'Наши партнёры';
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
-            Text::make('Наименования','title'),
-            Image::make('Рисунок','icon'),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
+            Text::make('Наименования', 'title'),
+            Image::make('Рисунок', 'icon'),
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [];
+    public function rules(Model $item): array
+    {
+        return [
+            'title' => ['required', 'string'],
+            'icon' => ['required', 'string'],
+        ];
     }
 
     public function search(): array

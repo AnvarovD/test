@@ -105,7 +105,15 @@ class BlogResource extends Resource
 
     public function rules(Model $item): array
     {
-        return [];
+        return  [
+        'title_ru' => ['required', 'string'],
+        'title_en' => ['required', 'string'],
+        'title_uz' => ['required', 'string'],
+        'description_ru' => ['required', 'string'],
+        'description_en' => ['required', 'string'],
+        'description_uz' => ['required', 'string'],
+        'images' => ['required', 'string'],
+    ];
     }
 
     public function search(): array

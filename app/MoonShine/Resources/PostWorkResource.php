@@ -20,31 +20,31 @@ use MoonShine\Actions\FiltersAction;
 
 class PostWorkResource extends Resource
 {
-	public static string $model = PostWork::class;
+    public static string $model = PostWork::class;
 
-	public static string $title = 'Посты для проектов';
+    public static string $title = 'Посты для проектов';
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
             Column::make([
                 Block::make('Создание поста', [
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru','title_ru')
+                            Text::make('Заголовок ru', 'title_ru')
                                 ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','title_en')
+                            Text::make('Заголовок en', 'title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','title_uz')
+                            Text::make('Заголовок uz', 'title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -59,13 +59,13 @@ class PostWorkResource extends Resource
                         ]),
 
                         Tab::make('Описания en', [
-                            TinyMce::make('Описания en','description_en')
+                            TinyMce::make('Описания en', 'description_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
                         Tab::make('Описания ru', [
-                            TinyMce::make('Описания ru','description_ru')
+                            TinyMce::make('Описания ru', 'description_ru')
                                 ->fieldContainer(false)
                                 ->required(),
                         ]),
@@ -78,15 +78,23 @@ class PostWorkResource extends Resource
                         'title_ru'
                     ),
 
-                    Image::make('Файл','image'),
+                    Image::make('Файл', 'image'),
                 ]),
             ]),
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [];
+    public function rules(Model $item): array
+    {
+        return [
+            'title_ru' => ['required', 'title_ru'],
+            'title_en' => ['required', 'title_en'],
+            'title_uz' => ['required', 'title_uz'],
+            'description_uz' => ['required', 'description_uz'],
+            'description_en' => ['required', 'description_en'],
+            'description_ru' => ['required', 'description_ru'],
+            'image' => ['required', 'image'],
+        ];
     }
 
     public function search(): array

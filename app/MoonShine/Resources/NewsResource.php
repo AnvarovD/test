@@ -42,13 +42,13 @@ class NewsResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','title_en')
+                            Text::make('Заголовок en', 'title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','title_uz')
+                            Text::make('Заголовок uz', 'title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -100,14 +100,22 @@ class NewsResource extends Resource
     public function query(): \Illuminate\Contracts\Database\Eloquent\Builder
     {
         return parent::query()
-            ->whereHas('page', function (Builder $query){
+            ->whereHas('page', function (Builder $query) {
                 $query->where('slug', 'news');
             });
     }
 
     public function rules(Model $item): array
     {
-        return [];
+        return [
+            'title_ru' => ['required', 'string'],
+            'title_en' => ['required', 'string'],
+            'title_uz' => ['required', 'string'],
+            'description_ru' => ['required', 'string'],
+            'description_en' => ['required', 'string'],
+            'description_uz' => ['required', 'string'],
+            'images' => ['required', 'string'],
+        ];
     }
 
     public function search(): array

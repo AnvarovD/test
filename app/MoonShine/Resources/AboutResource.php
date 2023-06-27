@@ -21,14 +21,14 @@ use MoonShine\Resources\SingletonResource;
 
 class AboutResource extends SingletonResource
 {
-	public static string $model = About::class;
+    public static string $model = About::class;
 
-	public static string $title = 'О нас';
+    public static string $title = 'О нас';
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
             Column::make([
                 Block::make('Banner', [
                     Tabs::make([
@@ -39,17 +39,16 @@ class AboutResource extends SingletonResource
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru','banner_title_ru')
+                            Text::make('Заголовок ru', 'banner_title_ru')
                                 ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','banner_title_en')
+                            Text::make('Заголовок en', 'banner_title_en')
                                 ->fieldContainer(false)
-                            ->hideOnIndex(),
+                                ->hideOnIndex(),
                         ]),
                     ]),
-
 
 
                     Tabs::make([
@@ -76,23 +75,22 @@ class AboutResource extends SingletonResource
                 Block::make('Content', [
                     Tabs::make([
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','content_title_uz')
+                            Text::make('Заголовок uz', 'content_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru','content_title_ru')
+                            Text::make('Заголовок ru', 'content_title_ru')
                                 ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','content_title_en')
+                            Text::make('Заголовок en', 'content_title_en')
                                 ->fieldContainer(false)
-                            ->hideOnIndex(),
+                                ->hideOnIndex(),
                         ]),
                     ]),
-
 
 
                     Tabs::make([
@@ -120,20 +118,20 @@ class AboutResource extends SingletonResource
                 Block::make('Footer', [
                     Tabs::make([
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','footer_title_uz')
+                            Text::make('Заголовок uz', 'footer_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru','footer_title_ru')
+                            Text::make('Заголовок ru', 'footer_title_ru')
                                 ->fieldContainer(false),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','footer_title_en')
+                            Text::make('Заголовок en', 'footer_title_en')
                                 ->fieldContainer(false)
-                            ->hideOnIndex(),
+                                ->hideOnIndex(),
                         ]),
                     ]),
 
@@ -171,12 +169,30 @@ class AboutResource extends SingletonResource
 //                ->hideOnCreate()
 //                ->hideOnUpdate(),
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [
-
+    public function rules(Model $item): array
+    {
+        return [
+            'banner_title_uz' => ['required', 'string'],
+            'banner_title_ru' => ['required', 'string'],
+            'banner_title_en' => ['required', 'string'],
+            'banner_description_uz' => ['required', 'string'],
+            'banner_description_ru' => ['required', 'string'],
+            'banner_description_en' => ['required', 'string'],
+            'content_title_uz' => ['required', 'string'],
+            'content_title_ru' => ['required', 'string'],
+            'content_title_en' => ['required', 'string'],
+            'content_description_uz' => ['required', 'string'],
+            'content_description_ru' => ['required', 'string'],
+            'content_description_en' => ['required', 'string'],
+            'footer_title_uz' => ['required', 'string'],
+            'footer_title_ru' => ['required', 'string'],
+            'footer_title_en' => ['required', 'string'],
+            'footer_description_uz' => ['required', 'string'],
+            'footer_description_ru' => ['required', 'string'],
+            'footer_description_en' => ['required', 'string'],
+            'footer_image' => ['required', 'string'],
         ];
     }
 
@@ -199,6 +215,6 @@ class AboutResource extends SingletonResource
 
     public function getId(): int|string
     {
-      return 1;
+        return 1;
     }
 }
