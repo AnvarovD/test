@@ -71,7 +71,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Что мы можем - пости', new AboutPostResource())
+            MenuItem::make('Что мы можем - посты', new AboutPostResource())
                 ->translatable()
                 ->icon('app'),
 
