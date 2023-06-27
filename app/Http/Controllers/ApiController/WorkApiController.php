@@ -113,6 +113,7 @@ class WorkApiController extends Controller
          referrerpolicy='no-referrer-when-downgrade'></iframe>";
 
         $contactInfos = ContactInfo::query()->get();
+
         $data = [
          'contact' =>  $contact,
           'contactInfos' =>  $contactInfos

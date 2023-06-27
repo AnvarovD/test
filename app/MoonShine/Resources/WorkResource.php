@@ -5,6 +5,8 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Work;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\RequiredIf;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Tab;
@@ -20,14 +22,14 @@ use MoonShine\Actions\FiltersAction;
 
 class WorkResource extends Resource
 {
-	public static string $model = Work::class;
+    public static string $model = Work::class;
 
-	public static string $title = 'Works';
+    public static string $title = 'Works';
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
 
             Column::make([
                 Block::make('Создание Проекта', [
@@ -69,9 +71,9 @@ class WorkResource extends Resource
                         ]),
                     ]),
 
-                    Image::make('macro_image','macro_image')->hideOnIndex(),
-                    Image::make('medium_image','medium_image')->hideOnIndex(),
-                    Image::make('micro_image','micro_image')->hideOnIndex(),
+                    Image::make('macro_image', 'macro_image')->hideOnIndex(),
+                    Image::make('medium_image', 'medium_image')->hideOnIndex(),
+                    Image::make('micro_image', 'micro_image')->hideOnIndex(),
                 ]),
             ]),
 
@@ -117,10 +119,10 @@ class WorkResource extends Resource
                     ]),
 
 
+                    Image::make('Загрузить рисунок', 'file'),
 
-                    File::make('Файл','file'),
-
-                    Checkbox::make('Это видео ?', 'is_video')
+                    Text::make('Линк на видео', 'video_link')
+                        ->hideOnIndex(),
                 ]),
             ]),
             Slug::make('slug')
@@ -132,11 +134,29 @@ class WorkResource extends Resource
                 ->hideOnCreate()
                 ->hideOnUpdate(),
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [];
+    public function rules(Model $item): array
+    {
+        return [
+            'title_ru' => ['required'],
+            'title_en' => ['required'],
+            'title_uz' => ['required'],
+            'sub_title_uz' => ['required'],
+            'sub_title_en' => ['required'],
+            'sub_title_ru' => ['required'],
+            'macro_image' => ['required'],
+            'medium_image' => ['required'],
+            'micro_image' => ['required'],
+            'work_title_ru' => ['required'],
+            'work_title_en' => ['required'],
+            'work_title_uz' => ['required'],
+            'work_sub_title_uz' => ['required'],
+            'work_sub_title_en' => ['required'],
+            'work_sub_title_ru' => ['required'],
+            'file' => ['nullable'],
+            'video_link' => [Rule::requiredIf(is_null($item->file)),],
+        ];
     }
 
     public function search(): array

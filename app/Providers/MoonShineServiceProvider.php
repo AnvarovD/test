@@ -79,7 +79,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Файлы', new FileResource())
+            MenuItem::make('Публичная оферта', new FileResource())
                 ->translatable()
                 ->icon('app'),
 

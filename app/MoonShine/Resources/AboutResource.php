@@ -70,7 +70,6 @@ class AboutResource extends Resource
 
 
                     ]),
-                    Image::make('Banner image', 'banner_image')
                 ]),
 
                 Block::make('Content', [
