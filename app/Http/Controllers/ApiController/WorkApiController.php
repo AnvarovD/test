@@ -127,11 +127,14 @@ class WorkApiController extends Controller
 
     public function getPublicOffer(string $slug): JsonResponse
     {
-        return new JsonResponse(
-            File::query()
+       $offer = File::query()
             ->where('slug', $slug)
-            ->first()
-        );
+            ->first();
+
+        if ($offer == null) {
+            return new JsonResponse(["message" => "NOT_FOUND"], 404);
+        }
+        return new JsonResponse($offer);
     }
 
     public function applications(Request $request)
