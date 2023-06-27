@@ -30,7 +30,7 @@ class ClientResource extends Resource
     {
         return [
             'title' => ['required', 'string'],
-            'icon' => ['image', 'required'],
+            'icon' => ['image'],
         ];
     }
 
