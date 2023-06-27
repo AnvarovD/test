@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use MoonShine\Decorations\Tab;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Fields\File;
+use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\Resource;
@@ -58,6 +59,14 @@ class FileResource extends Resource
                 ]),
             ]),
 
+            Slug::make('slug')
+                ->from('title_en')
+                ->unique()
+                ->separator('-')
+                ->hideOnIndex()
+                ->hideOnCreate()
+                ->hideOnDetail()
+                ->hideOnUpdate(),
         ];
     }
 

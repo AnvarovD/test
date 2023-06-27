@@ -125,6 +125,15 @@ class WorkApiController extends Controller
         return new JsonResponse(LicenseAgreement::query()->first());
     }
 
+    public function getPublicOffer(string $slug): JsonResponse
+    {
+        return new JsonResponse(
+            File::query()
+            ->where('slug', $slug)
+            ->first()
+        );
+    }
+
     public function applications(Request $request)
     {
         $validated = $request->validate(
