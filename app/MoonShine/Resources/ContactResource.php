@@ -9,8 +9,9 @@ use MoonShine\Fields\Text;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
+use MoonShine\Resources\SingletonResource;
 
-class ContactResource extends Resource
+class ContactResource extends SingletonResource
 {
     public static string $model = Contact::class;
 
@@ -77,4 +78,8 @@ class ContactResource extends Resource
 //            });
 //        });
 //    }
+    public function getId(): int|string
+    {
+        return 1;
+    }
 }

@@ -17,8 +17,9 @@ use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
+use MoonShine\Resources\SingletonResource;
 
-class AboutResource extends Resource
+class AboutResource extends SingletonResource
 {
 	public static string $model = About::class;
 
@@ -194,5 +195,10 @@ class AboutResource extends Resource
         return [
             FiltersAction::make(trans('moonshine::ui.filters')),
         ];
+    }
+
+    public function getId(): int|string
+    {
+      return 1;
     }
 }
