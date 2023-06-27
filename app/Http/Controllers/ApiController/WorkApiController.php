@@ -25,16 +25,14 @@ class WorkApiController extends Controller
 
     public function filesAndNetworks(): JsonResponse
     {
-       $files = File::all();
-       $networks = SocialNetwork::all();
-       $files->map(function (File $file) {
-           $file->file = $this->getFilePath($file->file_path);
-       });
+        $descriptions = File::all();
+        $networks = SocialNetwork::all();
         return new JsonResponse([
-          'files' =>  $files,
+            'descriptions' => $descriptions,
             'socialNetworks' => $networks
         ]);
     }
+
     public function post(string $slug): JsonResponse
     {
         $post = Post::query()->whereNull('page_id')->where('slug', $slug)->first();
@@ -46,7 +44,7 @@ class WorkApiController extends Controller
         $images = [];
         if (!empty($post->images)) {
             $post->imageWithLink = $post->images->map(function ($image) use ($images) {
-                return  env("APP_URL") . '/storage/' . $image;
+                return env("APP_URL") . '/storage/' . $image;
             })->first();
         }
 
@@ -115,16 +113,18 @@ class WorkApiController extends Controller
         $contactInfos = ContactInfo::query()->get();
 
         $data = [
-         'contact' =>  $contact,
-          'contactInfos' =>  $contactInfos
+            'contact' => $contact,
+            'contactInfos' => $contactInfos
         ];
 
         return new JsonResponse($data);
     }
+
     public function getLicenseAgreement(): JsonResponse
     {
         return new JsonResponse(LicenseAgreement::query()->first());
     }
+
     public function applications(Request $request)
     {
         $validated = $request->validate(
