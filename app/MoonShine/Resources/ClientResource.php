@@ -22,7 +22,7 @@ class ClientResource extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Наименования', 'title'),
-            Image::make('Рисунок', 'icon'),
+            Image::make('Рисунок', 'icon')->required(),
         ];
     }
 
@@ -30,7 +30,7 @@ class ClientResource extends Resource
     {
         return [
             'title' => ['required', 'string'],
-            'icon' => ['required', 'image'],
+            'icon' => ['image'],
         ];
     }
 
