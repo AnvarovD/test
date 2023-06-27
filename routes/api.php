@@ -48,11 +48,11 @@ Route::prefix('/about')->group(function (){
 
 Route::post('/applications', [WorkApiController::class, 'applications']);
 Route::get('/licenseAgreement', [WorkApiController::class, 'getLicenseAgreement']);
-Route::get('/public-offer/{slug}', [WorkApiController::class, 'getPublicOffer']);
 Route::get('/contacts', [WorkApiController::class, 'contacts']);
 Route::get('/filesAndNetworks', [WorkApiController::class, 'filesAndNetworks']);
 Route::get('/main', [WorkApiController::class, 'index']);
 Route::get('/works', [WorkApiController::class, 'works']);
+Route::get('/filesAndNetworks/{slug}', [WorkApiController::class, 'getPublicOffer']);
 Route::get('/works/{slug}', [WorkApiController::class, 'show']);
 Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
 
