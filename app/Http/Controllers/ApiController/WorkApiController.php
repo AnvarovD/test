@@ -201,7 +201,7 @@ class WorkApiController extends Controller
             'work_sub_title_en',
             'work_sub_title_ru',
             'file',
-            'is_video',
+            'video_link',
             'slug',
             'id'
         ])->where('slug', $slug)
