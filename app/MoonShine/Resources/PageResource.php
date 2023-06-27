@@ -37,13 +37,13 @@ class PageResource extends Resource
                                 ->fieldContainer(false),
                         ]),
                         Tab::make('Заголовок en', [
-                            Text::make('title_en')
+                            Text::make('Заголовок en','title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('title_uz')
+                            Text::make('Заголовок uz','title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),

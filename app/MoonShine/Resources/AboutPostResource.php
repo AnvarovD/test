@@ -40,13 +40,13 @@ class AboutPostResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('title_en')
+                            Text::make('Заголовок en','title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('title_uz')
+                            Text::make('Заголовок uz','title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -55,17 +55,17 @@ class AboutPostResource extends Resource
                     Tabs::make([
 
                         Tab::make('Описание ru', [
-                            TinyMce::make("", 'description_ru')
+                            TinyMce::make('Описание ru', 'description_ru')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Описание en', [
-                            TinyMce::make("", 'description_en')
+                            TinyMce::make('Описание en', 'description_en')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Описание uz', [
-                            TinyMce::make("", 'description_uz')
+                            TinyMce::make('Описание uz', 'description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 

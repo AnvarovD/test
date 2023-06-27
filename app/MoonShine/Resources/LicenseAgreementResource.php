@@ -25,7 +25,7 @@ class LicenseAgreementResource extends Resource
             ID::make()->sortable(),
             Tabs::make([
                 Tab::make('Описание uz', [
-                    TinyMce::make('description_uz')
+                    TinyMce::make('Описание uz','description_uz')
                         ->hideOnIndex(),
                 ]),
 
@@ -34,7 +34,7 @@ class LicenseAgreementResource extends Resource
                 ]),
 
                 Tab::make('Описание en', [
-                    TinyMce::make('description_en')
+                    TinyMce::make('Описание en','description_en')
                         ->hideOnIndex(),
                 ]),
             ]),

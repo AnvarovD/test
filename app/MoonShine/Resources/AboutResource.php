@@ -32,7 +32,7 @@ class AboutResource extends Resource
                 Block::make('Banner', [
                     Tabs::make([
                         Tab::make('Заголовок uz', [
-                            Text::make('banner_title_uz')
+                            Text::make('Заголовок uz', 'banner_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -43,7 +43,7 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('banner_title_en')
+                            Text::make('Заголовок en','banner_title_en')
                                 ->fieldContainer(false)
                             ->hideOnIndex(),
                         ]),
@@ -54,17 +54,17 @@ class AboutResource extends Resource
                     Tabs::make([
 
                         Tab::make('Описание uz', [
-                            TinyMce::make("", 'banner_description_uz')
+                            TinyMce::make('Описание uz', 'banner_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание eu', [
-                            TinyMce::make("", 'banner_description_ru')
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'banner_description_ru')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Описание en', [
-                            TinyMce::make("", 'banner_description_en')
+                            TinyMce::make('Описание en', 'banner_description_en')
                                 ->hideOnIndex()->required()
                         ]),
 
@@ -75,7 +75,7 @@ class AboutResource extends Resource
                 Block::make('Content', [
                     Tabs::make([
                         Tab::make('Заголовок uz', [
-                            Text::make('content_title_uz')
+                            Text::make('Заголовок uz','content_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -86,7 +86,7 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('content_title_en')
+                            Text::make('Заголовок en','content_title_en')
                                 ->fieldContainer(false)
                             ->hideOnIndex(),
                         ]),
@@ -97,17 +97,17 @@ class AboutResource extends Resource
                     Tabs::make([
 
                         Tab::make('Описание uz', [
-                            TinyMce::make("", 'content_description_uz')
+                            TinyMce::make('Описание uz', 'content_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание eu', [
-                            TinyMce::make("", 'content_description_ru')
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'content_description_ru')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Описание en', [
-                            TinyMce::make("", 'content_description_en')
+                            TinyMce::make('Описание en', 'content_description_en')
                                 ->hideOnIndex()->required()
                         ]),
 
@@ -119,7 +119,7 @@ class AboutResource extends Resource
                 Block::make('Footer', [
                     Tabs::make([
                         Tab::make('Заголовок uz', [
-                            Text::make('footer_title_uz')
+                            Text::make('Заголовок uz','footer_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
@@ -130,7 +130,7 @@ class AboutResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('footer_title_en')
+                            Text::make('Заголовок en','footer_title_en')
                                 ->fieldContainer(false)
                             ->hideOnIndex(),
                         ]),
@@ -139,17 +139,17 @@ class AboutResource extends Resource
                     Tabs::make([
 
                         Tab::make('Описание uz', [
-                            TinyMce::make("", 'footer_description_uz')
+                            TinyMce::make('Описание uz', 'footer_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание eu', [
-                            TinyMce::make("", 'footer_description_ru')
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'footer_description_ru')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Описание en', [
-                            TinyMce::make("", 'footer_description_en')
+                            TinyMce::make('Описание en', 'footer_description_en')
                                 ->hideOnIndex()->required()
                         ]),
 

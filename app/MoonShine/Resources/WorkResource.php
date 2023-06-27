@@ -41,13 +41,13 @@ class WorkResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('title_en')
+                            Text::make('Заголовок en','title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('title_uz')
+                            Text::make('Заголовок uz','title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
@@ -56,24 +56,24 @@ class WorkResource extends Resource
                     Tabs::make([
 
                         Tab::make('Под описание uz', [
-                            Text::make("", 'sub_title_uz')
+                            Text::make('Под описание uz', 'sub_title_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Под описание en', [
-                            Text::make("", 'sub_title_en')
+                            Text::make('Под описание en', 'sub_title_en')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Под описание ru', [
-                            Text::make("", 'sub_title_ru')
+                            Text::make('Под описание ru', 'sub_title_ru')
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
 
-                    Image::make('macro_image', 'macro_image')->hideOnIndex(),
-                    Image::make('medium_image', 'medium_image')->hideOnIndex(),
-                    Image::make('micro_image', 'micro_image')->hideOnIndex(),
+                    Image::make('Большой рисунок', 'macro_image')->hideOnIndex(),
+                    Image::make('Средний рисунок', 'medium_image')->hideOnIndex(),
+                    Image::make('Маленкий рисунок', 'micro_image')->hideOnIndex(),
                 ]),
             ]),
 
@@ -82,19 +82,19 @@ class WorkResource extends Resource
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('work_title_ru')
+                            Text::make('Заголовок ru','work_title_ru')
                                 ->fieldContainer(false)
                                 ->required()->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('work_title_en')
+                            Text::make('Заголовок en','work_title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('work_title_uz')
+                            Text::make('Заголовок uz','work_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
@@ -103,17 +103,17 @@ class WorkResource extends Resource
                     Tabs::make([
 
                         Tab::make('Под описание uz', [
-                            Text::make("", 'work_sub_title_uz')
+                            Text::make('Под описание uz', 'work_sub_title_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Под описание en', [
-                            Text::make("", 'work_sub_title_en')
+                            Text::make('Под описание en', 'work_sub_title_en')
                                 ->hideOnIndex()->required()
                         ]),
 
                         Tab::make('Под описание ru', [
-                            Text::make("", 'work_sub_title_ru')
+                            Text::make('Под описание ru', 'work_sub_title_ru')
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
