@@ -43,9 +43,9 @@ class MoonShineServiceProvider extends ServiceProvider
 //                    ->icon('bookmark'),
 //            ])->translatable(),
 
-            MenuItem::make('Категории', new PageResource())
-                ->translatable()
-                ->icon('app'),
+//            MenuItem::make('Категории', new PageResource())
+//                ->translatable()
+//                ->icon('app'),
 
             MenuItem::make('Новости', new NewsResource())
                 ->translatable()

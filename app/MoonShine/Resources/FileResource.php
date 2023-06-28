@@ -14,8 +14,9 @@ use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
 use App\Models\File as FileModel;
+use MoonShine\Resources\SingletonResource;
 
-class FileResource extends Resource
+class FileResource extends SingletonResource
 {
     public static string $model = FileModel::class;
 
@@ -97,5 +98,10 @@ class FileResource extends Resource
         return [
             FiltersAction::make(trans('moonshine::ui.filters')),
         ];
+    }
+
+    public function getId(): int|string
+    {
+        return 1;
     }
 }
