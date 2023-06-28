@@ -70,6 +70,6 @@ class LicenseAgreementResource extends SingletonResource
 
     public function getId(): int|string
     {
-       return 1;
+       return 2;
     }
 }
