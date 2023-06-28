@@ -154,6 +154,7 @@ class WorkApiController extends Controller
         $application->organization = $validated['organization'];
         $application->description = $validated['description'];
         $application->status = 'Новая';
+        $application->save();
 
         return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
