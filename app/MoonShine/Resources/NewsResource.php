@@ -77,7 +77,49 @@ class NewsResource extends Resource
                 BelongsTo::make(
                     'Родительская Страница',
                     'page_id',
-                    'title_ru')
+                    'title_ru'),
+
+                Block::make('Meta', [
+                    Tabs::make([
+                        Tab::make('Mata Заголовок uz', [
+                            Text::make('Mata Заголовок uz', 'meta_title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
+                        Tab::make('Mata Заголовок en', [
+                            Text::make('Mata Заголовок en', 'meta_title_en')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+                    ]),
+
+                    Tabs::make([
+
+                        Tab::make('Mata Описание uz', [
+                            TinyMce::make('Mata Описание uz', 'meta_description_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание en', [
+                            TinyMce::make('Mata Описание en', 'meta_description_en')
+                                ->hideOnIndex()->required()
+                        ]),
+
+
+                    ]),
+                ]),
+
             ]),
 
             Slug::make('slug')
@@ -115,6 +157,12 @@ class NewsResource extends Resource
             'description_en' => ['required', 'string'],
             'description_uz' => ['required', 'string'],
             'images' => ['required', 'string'],
+            'meta_title_uz' => ['required', 'string'],
+            'meta_title_ru' => ['required', 'string'],
+            'meta_title_en' => ['required', 'string'],
+            'meta_description_uz' => ['required', 'string'],
+            'meta_description_ru' => ['required', 'string'],
+            'meta_description_en' => ['required', 'string'],
         ];
     }
 

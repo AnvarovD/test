@@ -16,6 +16,7 @@ use MoonShine\Fields\File;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
+use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
@@ -125,6 +126,48 @@ class WorkResource extends Resource
                         ->hideOnIndex(),
                 ]),
             ]),
+
+            Column::make([
+                Block::make('Meta', [
+                    Tabs::make([
+                        Tab::make('Mata Заголовок uz', [
+                            Text::make('Mata Заголовок uz', 'meta_title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
+                        Tab::make('Mata Заголовок en', [
+                            Text::make('Mata Заголовок en', 'meta_title_en')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+                    ]),
+
+                    Tabs::make([
+
+                        Tab::make('Mata Описание uz', [
+                            TinyMce::make('Mata Описание uz', 'meta_description_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание en', [
+                            TinyMce::make('Mata Описание en', 'meta_description_en')
+                                ->hideOnIndex()->required()
+                        ]),
+                    ]),
+                ]),
+            ]),
+
             Slug::make('slug')
                 ->from('title_en')
                 ->unique()
@@ -145,9 +188,9 @@ class WorkResource extends Resource
             'sub_title_uz' => ['required'],
             'sub_title_en' => ['required'],
             'sub_title_ru' => ['required'],
-            'macro_image' => ['required'],
-            'medium_image' => ['required'],
-            'micro_image' => ['required'],
+            'macro_image' => ['nullable', 'Mata '],
+            'medium_image' => ['nullable', 'image'],
+            'micro_image' => ['nullable', 'image'],
             'work_title_ru' => ['required'],
             'work_title_en' => ['required'],
             'work_title_uz' => ['required'],
@@ -156,6 +199,12 @@ class WorkResource extends Resource
             'work_sub_title_ru' => ['required'],
             'file' => ['nullable'],
             'video_link' => [Rule::requiredIf(is_null($item->file)),],
+            'meta_title_uz' => ['required', 'string'],
+            'meta_title_ru' => ['required', 'string'],
+            'meta_title_en' => ['required', 'string'],
+            'meta_description_uz' => ['required', 'string'],
+            'meta_description_ru' => ['required', 'string'],
+            'meta_description_en' => ['required', 'string'],
         ];
     }
 

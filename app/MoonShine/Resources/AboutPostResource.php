@@ -71,7 +71,48 @@ class AboutPostResource extends Resource
 
                     ]),
                 ]),
+
+                Block::make('Meta', [
+                    Tabs::make([
+                        Tab::make('Mata Заголовок uz', [
+                            Text::make('Mata Заголовок uz', 'meta_title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
+                        Tab::make('Mata Заголовок en', [
+                            Text::make('Mata Заголовок en', 'meta_title_en')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+                    ]),
+
+                    Tabs::make([
+
+                        Tab::make('Mata Описание uz', [
+                            TinyMce::make('Mata Описание uz', 'meta_description_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
+                        Tab::make('Mata Описание en', [
+                            TinyMce::make('Mata Описание en', 'meta_description_en')
+                                ->hideOnIndex()->required()
+                        ]),
+                    ]),
+                ]),
+
             ]),
+
 
             Slug::make('slug')
                 ->from('title_en')
@@ -82,10 +123,21 @@ class AboutPostResource extends Resource
                 ->hideOnCreate()
                 ->hideOnUpdate(),
 
-            Image::make("Рисунки", "images")
-                ->dir("images")
-                ->multiple()
-                ->removable()
+            Column::make([
+                Block::make('Рисунок', [
+                    Tabs::make([
+                        Tab::make('Загрузите Рисунок', [
+                            Image::make("", "images")
+                                ->dir("images")
+                                ->multiple()
+                                ->removable()
+                        ]),
+                    ]),
+                ])
+            ]),
+
+
+
 
         ];
     }
@@ -104,7 +156,13 @@ class AboutPostResource extends Resource
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'description_uz' => ['required', 'string'],
-            'images' => ['required', 'string'],
+            'images' => ['nullable', 'string'],
+            'meta_title_uz' => ['required', 'string'],
+            'meta_title_ru' => ['required', 'string'],
+            'meta_title_en' => ['required', 'string'],
+            'meta_description_uz' => ['required', 'string'],
+            'meta_description_ru' => ['required', 'string'],
+            'meta_description_en' => ['required', 'string'],
         ];
     }
 

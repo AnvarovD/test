@@ -59,6 +59,14 @@ class WorkApiController extends Controller
         $clients = $this->getClientIconWithLinks(Client::all());
 
         $data = [
+            "meta" => [
+                "meta_title_uz" => $about->meta_title_uz,
+                "meta_title_ru" => $about->meta_title_ru,
+                "meta_title_en" => $about->meta_title_en,
+                "meta_description_uz" => $about->meta_description_uz,
+                "meta_description_ru" => $about->meta_description_ru,
+                "meta_description_en" => $about->meta_description_en,
+            ],
             "banner" => [
                 'banner_title_en' => $about->banner_title_en,
                 'banner_subtitle_en' => $about->banner_subtitle_en,
@@ -127,7 +135,7 @@ class WorkApiController extends Controller
 
     public function getPublicOffer(string $slug): JsonResponse
     {
-       $offer = File::query()
+        $offer = File::query()
             ->where('slug', $slug)
             ->first();
 
@@ -173,7 +181,13 @@ class WorkApiController extends Controller
             'macro_image',
             'medium_image',
             'micro_image',
-            'slug'
+            'slug',
+            "meta_title_uz",
+            "meta_title_ru",
+            "meta_title_en",
+            "meta_description_uz",
+            "meta_description_ru",
+            "meta_description_en",
         ])->limit($limit)->get();
 
         $works->map(function (Work $work) {
@@ -216,7 +230,13 @@ class WorkApiController extends Controller
             'file',
             'video_link',
             'slug',
-            'id'
+            'id',
+            "meta_title_uz",
+            "meta_title_ru",
+            "meta_title_en",
+            "meta_description_uz",
+            "meta_description_ru",
+            "meta_description_en",
         ])->where('slug', $slug)
             ->with(
                 [
