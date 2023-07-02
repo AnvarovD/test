@@ -21,10 +21,10 @@ class ApplicationResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Имя', 'name'),
-            Text::make('Номер телефона/Email', 'phone'),
-            Text::make('Организация', 'organization'),
-            Text::make('Описания', 'description'),
+            Text::make('Имя', 'name')->readonly(),
+            Text::make('Номер телефона/Email', 'phone')->readonly(),
+            Text::make('Организация', 'organization')->readonly(),
+            Text::make('Описания', 'description')->readonly(),
             Select::make('Статус', 'status')
                 ->options([
                     'Новая' => 'Новая',
@@ -47,7 +47,9 @@ class ApplicationResource extends Resource
 
     public function search(): array
     {
-        return ['id'];
+        return [
+//            'id'
+        ];
     }
 
     public function filters(): array

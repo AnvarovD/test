@@ -210,7 +210,9 @@ class WorkResource extends Resource
 
     public function search(): array
     {
-        return ['id'];
+        return [
+//            'id'
+        ];
     }
 
     public function filters(): array

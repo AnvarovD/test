@@ -156,7 +156,7 @@ class AboutPostResource extends Resource
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'description_uz' => ['required', 'string'],
-            'images' => ['nullable', 'string'],
+            'images' => ['nullable', 'array'],
             'meta_title_uz' => ['required', 'string'],
             'meta_title_ru' => ['required', 'string'],
             'meta_title_en' => ['required', 'string'],
@@ -168,7 +168,9 @@ class AboutPostResource extends Resource
 
     public function search(): array
     {
-        return ['id'];
+        return [
+//            'id'
+        ];
     }
 
     public function filters(): array

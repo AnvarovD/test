@@ -53,7 +53,9 @@ class LicenseAgreementResource extends SingletonResource
 
     public function search(): array
     {
-        return ['id'];
+        return [
+//            'id'
+        ];
     }
 
     public function filters(): array
