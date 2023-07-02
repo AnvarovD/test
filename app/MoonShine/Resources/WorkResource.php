@@ -152,17 +152,17 @@ class WorkResource extends Resource
 
                         Tab::make('Mata Описание uz', [
                             TinyMce::make('Mata Описание uz', 'meta_description_uz')
-                                ->hideOnIndex()->required()
+                                ->hideOnIndex()
                         ]),
 
                         Tab::make('Mata Описание ru', [
                             TinyMce::make('Mata Описание ru', 'meta_description_ru')
-                                ->hideOnIndex()->required()
+                                ->hideOnIndex()
                         ]),
 
                         Tab::make('Mata Описание en', [
                             TinyMce::make('Mata Описание en', 'meta_description_en')
-                                ->hideOnIndex()->required()
+                                ->hideOnIndex()
                         ]),
                     ]),
                 ]),
@@ -199,12 +199,12 @@ class WorkResource extends Resource
             'work_sub_title_ru' => ['required'],
             'file' => ['nullable'],
             'video_link' => ['nullable','string'],
-            'meta_title_uz' => ['required', 'string'],
-            'meta_title_ru' => ['required', 'string'],
-            'meta_title_en' => ['required', 'string'],
-            'meta_description_uz' => ['required', 'string'],
-            'meta_description_ru' => ['required', 'string'],
-            'meta_description_en' => ['required', 'string'],
+            'meta_title_uz' => ['nullable', 'string'],
+            'meta_title_ru' => ['nullable', 'string'],
+            'meta_title_en' => ['nullable', 'string'],
+            'meta_description_uz' => ['nullable', 'string'],
+            'meta_description_ru' => ['nullable', 'string'],
+            'meta_description_en' => ['nullable', 'string'],
         ];
     }
 
