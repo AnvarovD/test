@@ -158,7 +158,7 @@ class NewsResource extends Resource
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'description_uz' => ['required', 'string'],
-            'images' => ['required', 'string'],
+            'images' => ['nullable', 'image'],
             'meta_title_uz' => ['required', 'string'],
             'meta_title_ru' => ['required', 'string'],
             'meta_title_en' => ['required', 'string'],
