@@ -77,7 +77,9 @@ class NewsResource extends Resource
                 BelongsTo::make(
                     'Родительская Страница',
                     'page_id',
-                    'title_ru'),
+                    'title_ru'
+                )
+                    ->valuesQuery(fn(Builder $query) => $query->where('slug', 'news')) ,
 
                 Block::make('Meta', [
                     Tabs::make([
