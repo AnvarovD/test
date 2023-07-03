@@ -4,14 +4,12 @@ namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Contact;
-use Illuminate\Support\Facades\Route;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Tab;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\TinyMce;
-use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
 use MoonShine\Resources\SingletonResource;
@@ -22,7 +20,6 @@ class ContactResource extends SingletonResource
 
     public static string $title = 'Контакты';
 
-    protected string $routeAfterSave = 'show'; // index, show, edit
 
     public function fields(): array
     {
@@ -114,24 +111,6 @@ class ContactResource extends SingletonResource
         ];
     }
 
-//    public function resolveRoutes(): void
-//    {
-//        parent::resolveRoutes();
-//       $this->route('show', Contact::query()->first()->id);
-//    }
-//        parent::resolveRoutes();
-//
-//        Route::prefix('resource')->group(function (): void {
-//            Route::get("{$this->uriKey()}/index", function (Contact $item) {
-//                dd($this->uriKey());
-//
-//                dd($item);
-//                $item->restore();
-//
-//                return redirect()->back();
-//            });
-//        });
-//    }
     public function getId(): int|string
     {
         return 1;
