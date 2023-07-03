@@ -129,8 +129,7 @@ class WorkResource extends Resource
 
                     Text::make('Линк на видео', 'video_link')
                         ->showWhen('video_link', '!=', null)
-                        ->default('Video')
-                        ->hideOnIndex(),
+                        ->default('Video'),
                 ]),
             ]),
 
