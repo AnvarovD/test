@@ -102,9 +102,8 @@ class WorkResource extends Resource
                     ]),
 
                     Tabs::make([
-
-                        Tab::make('Под описание uz', [
-                            Text::make('Под описание uz', 'work_sub_title_uz')
+                        Tab::make('Под описание ru', [
+                            Text::make('Под описание ru', 'work_sub_title_ru')
                                 ->hideOnIndex()->required()
                         ]),
 
@@ -113,10 +112,11 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Под описание ru', [
-                            Text::make('Под описание ru', 'work_sub_title_ru')
+                        Tab::make('Под описание uz', [
+                            Text::make('Под описание uz', 'work_sub_title_uz')
                                 ->hideOnIndex()->required()
                         ]),
+
                     ]),
 
 
