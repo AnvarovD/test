@@ -17,6 +17,7 @@ use MoonShine\Fields\Image;
 use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\TinyMce;
+use MoonShine\Fields\Url;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
@@ -127,9 +128,8 @@ class WorkResource extends Resource
 
                     Image::make('Загрузить рисунок', 'file'),
 
-                    Text::make('Линк на видео', 'video_link')
-                        ->showWhen('video_link', '!=', null)
-                        ->default('Video'),
+                    Url::make('Линк на видео', 'video_link')
+                        ->showWhen('video_link', '!=', null),
                 ]),
             ]),
 
