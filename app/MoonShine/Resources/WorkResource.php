@@ -2,11 +2,13 @@
 
 namespace App\MoonShine\Resources;
 
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Work;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\RequiredIf;
+use Illuminate\Validation\ValidationException;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Tab;
@@ -30,6 +32,7 @@ class WorkResource extends Resource
 
     public function fields(): array
     {
+        $item = $this->getItem();
         return [
             ID::make()->sortable(),
 
@@ -43,13 +46,13 @@ class WorkResource extends Resource
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','title_en')
+                            Text::make('Заголовок en', 'title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','title_uz')
+                            Text::make('Заголовок uz', 'title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
@@ -84,26 +87,25 @@ class WorkResource extends Resource
 
                     Tabs::make([
                         Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru','work_title_ru')
+                            Text::make('Заголовок ru', 'work_title_ru')
                                 ->fieldContainer(false)
                                 ->required()->hideOnIndex(),
                         ]),
 
                         Tab::make('Заголовок en', [
-                            Text::make('Заголовок en','work_title_en')
+                            Text::make('Заголовок en', 'work_title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
                         Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz','work_title_uz')
+                            Text::make('Заголовок uz', 'work_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
                     ]),
 
                     Tabs::make([
-
                         Tab::make('Под описание ru', [
                             Text::make('Под описание ru', 'work_sub_title_ru')
                                 ->hideOnIndex()->required()
@@ -118,19 +120,55 @@ class WorkResource extends Resource
                             Text::make('Под описание uz', 'work_sub_title_uz')
                                 ->hideOnIndex()->required()
                         ]),
-
-
-
-
                     ]),
 
-
-
-                    Image::make('Загрузить рисунок', 'file'),
-
-                    Url::make('Линк на видео', 'video_link')
-                        ->showWhen('video_link', '!=', null),
+//                    Tabs::make([
+//                        Tab::make('рисунок', [
+//                            Image::make('Загрузить рисунок', 'file'),
+//                        ]),
+//
+//                        Tab::make('видео', [
+//                            Url::make('Линк на видео', 'video_link')
+//                                ->showWhen('video_link', '!=', null),
+//                        ]),
+//
+//                    ]),
                 ]),
+            ]),
+
+            Column::make([
+                Block::make('Медиа файли',[
+                Tabs::make([
+                    Tab::make('рисунок', [
+                        Image::make('Загрузить рисунок', 'file')
+                            ->showWhen('file', '!=', null)
+                            ->hideOnUpdate(function () use ($item){
+                                if ($item != null){
+                                    if ($item->file){
+                                        return true;
+                                    }else {
+                                        return false;
+                                    }
+                                }
+                            }),
+                    ]),
+
+                    Tab::make('видео', [
+                        Url::make('Линк на видео', 'video_link')
+                            ->showWhen('video_link', '!=', null)
+                            ->hideOnUpdate(function () use ($item){
+                                if ($item != null){
+                                    if ($item->video_link == ""){
+                                        return false;
+                                    }else {
+                                        return true;
+                                    }
+                                }
+                            }),
+//                        ->showWhen($this->getItem()->video_link),
+                    ]),
+                ])
+            ])
             ]),
 
             Column::make([
@@ -203,8 +241,23 @@ class WorkResource extends Resource
             'work_sub_title_uz' => ['required'],
             'work_sub_title_en' => ['required'],
             'work_sub_title_ru' => ['required'],
-            'file' => ['nullable'],
-            'video_link' => ['nullable','string'],
+            'file' => ['image',
+                Rule::excludeIf(function () {
+                    if (request()->video_link && request()->file) {
+                        throw ValidationException::withMessages([
+                            'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
+                        ]);
+                    }
+                }), Rule::requiredIf(!request()->video_link),
+            ],
+            'video_link' => ['string', Rule::excludeIf(function () {
+                if (request()->video_link && request()->file) {
+                    throw ValidationException::withMessages([
+                        'video_link' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
+                    ]);
+                }
+            }), Rule::requiredIf(!request()->file),
+            ],
             'meta_title_uz' => ['nullable', 'string'],
             'meta_title_ru' => ['nullable', 'string'],
             'meta_title_en' => ['nullable', 'string'],
