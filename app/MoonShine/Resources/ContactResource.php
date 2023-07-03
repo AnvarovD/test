@@ -20,7 +20,6 @@ class ContactResource extends SingletonResource
 
     public static string $title = 'Контакты';
 
-
     public function fields(): array
     {
         return [
