@@ -124,9 +124,12 @@ class WorkResource extends Resource
                     ]),
 
 
+
                     Image::make('Загрузить рисунок', 'file'),
 
                     Text::make('Линк на видео', 'video_link')
+                        ->showWhen('video_link', '!=', null)
+                        ->default('Video')
                         ->hideOnIndex(),
                 ]),
             ]),
