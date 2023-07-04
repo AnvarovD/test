@@ -188,7 +188,8 @@ class WorkApiController extends Controller
             "meta_description_uz",
             "meta_description_ru",
             "meta_description_en",
-        ])->limit($limit)->get();
+            "is_main"
+        ])->where('is_main', '=', 1)->limit($limit)->get();
 
         $works->map(function (Work $work) {
             $work->macro_image = env('APP_URL') . '/storage/' . $work->macro_image;
