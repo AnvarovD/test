@@ -234,6 +234,10 @@ class WorkResource extends Resource
 
     public function rules(Model $item): array
     {
+        $id = null;
+        if (request()->id){
+            $id = request()->id;
+        }
         return [
             'title_ru' => ['required'],
             'title_en' => ['required'],
@@ -257,7 +261,16 @@ class WorkResource extends Resource
                             'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
                         ]);
                     }
-                }), Rule::requiredIf(!request()->video_link),
+                }), Rule::requiredIf(function () use($id) {
+                    if ($id){
+                        $work = Work::query()->find((int)$id);
+                        if (request()->file && $work->video_link){
+                            throw ValidationException::withMessages([
+                                'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
+                            ]);
+                        }
+                    }
+                }),
             ],
             'video_link' => ['nullable','string', Rule::excludeIf(function () {
                 if (request()->video_link && request()->file) {
@@ -265,7 +278,17 @@ class WorkResource extends Resource
                         'video_link' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
                     ]);
                 }
-            }), Rule::requiredIf(!request()->file),
+
+            }), Rule::requiredIf(function () use($id) {
+                if ($id){
+                    $work = Work::query()->find((int)$id);
+                    if (request()->video_link && $work->file){
+                        throw ValidationException::withMessages([
+                            'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
+                        ]);
+                    }
+                }
+            }),
             ],
             'meta_title_uz' => ['nullable', 'string'],
             'meta_title_ru' => ['nullable', 'string'],
