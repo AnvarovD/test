@@ -32,6 +32,11 @@ class WorkResource extends Resource
 
     public function fields(): array
     {
+        $edit = false;
+        if (request()->route()->uri == "admin/resource/work-resource/{resourceItem}/edit"){
+            $edit = true;
+        }
+
         $item = $this->getItem();
         return [
             ID::make()->sortable(),
@@ -75,6 +80,8 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
                     ]),
+
+                    Checkbox::make('Показать на главной странице', 'is_main'),
 
                     Image::make('Большой рисунок', 'macro_image')->hideOnIndex(),
                     Image::make('Средний рисунок', 'medium_image')->hideOnIndex(),
@@ -138,34 +145,29 @@ class WorkResource extends Resource
 
             Column::make([
                 Block::make('Медиа файли',[
+
                 Tabs::make([
                     Tab::make('рисунок', [
                         Image::make('Загрузить рисунок', 'file')
-                            ->showWhen('file', '!=', null)
-                            ->hideOnUpdate(function () use ($item){
-                                if ($item != null){
-                                    if ($item->file){
-                                        return true;
-                                    }else {
-                                        return false;
-                                    }
+                            ->disabled(function () use ($item) {
+                                if ($item && !$item->file && request()->route()->uri == "admin/resource/work-resource/{resourceItem}/edit"){
+                                    return true;
+                                }else {
+                                    return false;
                                 }
                             }),
+
                     ]),
 
                     Tab::make('видео', [
                         Url::make('Линк на видео', 'video_link')
-                            ->showWhen('video_link', '!=', null)
-                            ->hideOnUpdate(function () use ($item){
-                                if ($item != null){
-                                    if ($item->video_link == ""){
-                                        return false;
-                                    }else {
-                                        return true;
-                                    }
-                                }
-                            }),
-//                        ->showWhen($this->getItem()->video_link),
+                        ->disabled(function () use ($item) {
+                            if ($item && !$item->video_link && request()->route()->uri == "admin/resource/work-resource/{resourceItem}/edit"){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        }),
                     ]),
                 ])
             ])
