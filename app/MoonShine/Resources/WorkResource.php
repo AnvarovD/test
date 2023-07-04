@@ -176,7 +176,7 @@ class WorkResource extends Resource
                                 }else {
                                     return false;
                                 }
-                            }),
+                            })->removable(),
 
                     ]),
 
