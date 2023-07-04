@@ -83,9 +83,30 @@ class WorkResource extends Resource
 
                     Checkbox::make('Показать на главной странице', 'is_main'),
 
-                    Image::make('Большой рисунок', 'macro_image')->hideOnIndex(),
-                    Image::make('Средний рисунок', 'medium_image')->hideOnIndex(),
-                    Image::make('Маленкий рисунок', 'micro_image')->hideOnIndex(),
+                    Image::make('Большой рисунок', 'macro_image')
+                        ->required(function () use ($item) {
+                            if (request()->route()->uri == "admin/resource/work-resource/create"){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        })->hideOnIndex(),
+                    Image::make('Средний рисунок', 'medium_image')
+                        ->required(function () use ($item) {
+                            if (request()->route()->uri == "admin/resource/work-resource/create"){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        })->hideOnIndex(),
+                    Image::make('Маленкий рисунок', 'micro_image')
+                        ->required(function () use ($item) {
+                            if (request()->route()->uri == "admin/resource/work-resource/create"){
+                                return true;
+                            }else {
+                                return false;
+                            }
+                        })->hideOnIndex(),
                 ]),
             ]),
 
