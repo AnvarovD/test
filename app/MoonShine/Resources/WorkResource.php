@@ -273,7 +273,7 @@ class WorkResource extends Resource
                     }
                 }), Rule::requiredIf(!request()->video_link),
             ],
-            'video_link' => ['string', Rule::excludeIf(function () {
+            'video_link' => ['nullable','string', Rule::excludeIf(function () {
                 if (request()->video_link && request()->file) {
                     throw ValidationException::withMessages([
                         'video_link' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',

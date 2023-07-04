@@ -35,4 +35,6 @@ Route::prefix('logstash')
             ->withMiddleware(new \Alifuz\Polylog\Middlewares\GuzzleLogMiddleware("test", [], 'logstash'))
             ->get("/todos/1")->json();
         return $d;
-    });
+    })
+//->middleware(RouteLogMiddleware::class)
+;
