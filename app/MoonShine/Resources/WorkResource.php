@@ -169,26 +169,12 @@ class WorkResource extends Resource
 
                 Tabs::make([
                     Tab::make('рисунок', [
-                        Image::make('Загрузить рисунок', 'file')
-                            ->disabled(function () use ($item) {
-                                if ($item && !$item->file && request()->route()->uri == "admin/resource/work-resource/{resourceItem}/edit"){
-                                    return true;
-                                }else {
-                                    return false;
-                                }
-                            })->removable(),
+                        Image::make('Загрузить рисунок', 'file')->removable(),
 
                     ]),
 
                     Tab::make('видео', [
-                        Url::make('Линк на видео', 'video_link')
-                        ->disabled(function () use ($item) {
-                            if ($item && !$item->video_link && request()->route()->uri == "admin/resource/work-resource/{resourceItem}/edit"){
-                                return true;
-                            }else {
-                                return false;
-                            }
-                        }),
+                        Url::make('Линк на видео', 'video_link'),
                     ]),
                 ])
             ])
