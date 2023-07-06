@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Tab;
@@ -154,7 +156,17 @@ class BlogResource extends Resource
             'description_ru' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'description_uz' => ['required', 'string'],
-            'images' => ['nullable','array',"min:1","max:1"],
+            'images' => ["nullable", 'array',"min:1", "max:1",Rule::requiredIf(function (){
+                if (
+                    request()->route()->getName() === "moonshine.blogs.store"
+                    &   request()->route()->getName() === "moonshine.blogs.update"
+                    & !request()->images
+                ){
+                    throw  ValidationException::withMessages([
+                        "Рисунок обязательный для заполнения"
+                    ]);
+                }
+            })],
             'meta_title_uz' => ['nullable', 'string'],
             'meta_title_ru' => ['nullable', 'string'],
             'meta_title_en' => ['nullable', 'string'],
