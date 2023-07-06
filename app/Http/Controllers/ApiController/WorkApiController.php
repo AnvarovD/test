@@ -145,6 +145,19 @@ class WorkApiController extends Controller
         return new JsonResponse($offer);
     }
 
+
+    public function getSocialNetwork(string $slug): JsonResponse
+    {
+        $offer = SocialNetwork::query()
+            ->where('slug', $slug)
+            ->first();
+
+        if ($offer == null) {
+            return new JsonResponse(["message" => "NOT_FOUND"], 404);
+        }
+        return new JsonResponse($offer);
+    }
+
     public function applications(Request $request)
     {
         $validated = $request->validate(

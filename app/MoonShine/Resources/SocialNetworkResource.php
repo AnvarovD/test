@@ -5,6 +5,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SocialNetwork;
 
+use MoonShine\Fields\Slug;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
@@ -22,6 +23,14 @@ class SocialNetworkResource extends Resource
             ID::make()->sortable(),
             Text::make('Названия', 'name'),
             Text::make('Линк', 'link'),
+            Slug::make('slug')
+                ->from('name')
+                ->unique()
+                ->separator('-')
+                ->hideOnIndex()
+                ->hideOnDetail()
+                ->hideOnCreate()
+                ->hideOnUpdate(),
         ];
     }
 

@@ -53,6 +53,7 @@ Route::get('/filesAndNetworks', [WorkApiController::class, 'filesAndNetworks']);
 Route::get('/main', [WorkApiController::class, 'index']);
 Route::get('/works', [WorkApiController::class, 'works']);
 Route::get('/filesAndNetworks/{slug}', [WorkApiController::class, 'getPublicOffer']);
+Route::get('/socialNetwork/{slug}', [WorkApiController::class, 'getSocialNetwork']);
 Route::get('/works/{slug}', [WorkApiController::class, 'show']);
 Route::get('/works/showWorkContent/{slug}', [WorkApiController::class, 'showWorkContent']);
 
