@@ -43,7 +43,7 @@ return [
         'mark_as_read' => 'Прочитано',
     ],
     'login' => [
-        'title' => 'Добро пожаловать в :moonshine_title!',
+        'title' => 'Добро пожаловать',
         'description' => 'Пожалуйста, войдите в свою учетную запись',
         'authorization' => 'Авторизация',
         'remember_me' => 'Запомнить',
