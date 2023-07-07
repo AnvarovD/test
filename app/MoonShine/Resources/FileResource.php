@@ -51,7 +51,8 @@ class FileResource extends Resource
                 ]),
 
                 Tab::make('Описание ru', [
-                    TinyMce::make('Описание ru','description_ru'),
+                    TinyMce::make('Описание ru','description_ru')
+                    ->hideOnIndex(),
                 ]),
 
                 Tab::make('Описание en', [
