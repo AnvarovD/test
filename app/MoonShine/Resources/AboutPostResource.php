@@ -161,9 +161,9 @@ class AboutPostResource extends Resource
             'description_uz' => ['required', 'string'],
             'images' => ["nullable", 'array',"min:1", "max:1",Rule::requiredIf(function (){
                  if (
-               (      request()->route()->getName() === "moonshine.aboutPosts.store"
-                  ||   request()->route()->getName() === "moonshine.aboutPosts.update")
-                 & !request()->images
+                     request()->route()->getName() === "moonshine.aboutPosts.store"
+                 &&
+                     !request()->images
                  ){
                      throw  ValidationException::withMessages([
                          "Рисунок обязательный для заполнения"
