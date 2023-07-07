@@ -5,6 +5,8 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PostWork;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
 use MoonShine\Decorations\Tab;
@@ -26,6 +28,7 @@ class PostWorkResource extends Resource
 
     public function fields(): array
     {
+//        dd(request()->route()->getName());
         return [
             ID::make()->sortable(),
             Column::make([
@@ -134,7 +137,16 @@ class PostWorkResource extends Resource
             'description_uz' => ['required', 'string'],
             'description_en' => ['required', 'string'],
             'description_ru' => ['required', 'string'],
-            'image' => ['nullable', 'image'],
+            'image' => ["nullable", "image",Rule::requiredIf(function (){
+                if (
+                    request()->route()->getName() === "moonshine.postWorks.store"
+                    && !request()->image
+                ){
+                    throw  ValidationException::withMessages([
+                        "Рисунок обязательный для заполнения"
+                    ]);
+                }
+            })],
             'meta_title_uz' => ['nullable', 'string'],
             'meta_title_ru' => ['nullable', 'string'],
             'meta_title_en' => ['nullable', 'string'],

@@ -28,7 +28,6 @@ class ClientResource extends Resource
     public function rules(Model $item): array
     {
         return [
-            'title' => ['required', 'string'],
             'icon' => ['image'],
         ];
     }

@@ -16,7 +16,7 @@ use MoonShine\Actions\FiltersAction;
 use App\Models\File as FileModel;
 use MoonShine\Resources\SingletonResource;
 
-class FileResource extends Resource
+class FileResource extends SingletonResource
 {
     public static string $model = FileModel::class;
 
@@ -107,4 +107,8 @@ class FileResource extends Resource
 //    {
 //        return 1;
 //    }
+    public function getId(): int|string
+    {
+       return 3;
+    }
 }
