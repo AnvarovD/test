@@ -133,7 +133,6 @@ class AboutPostResource extends Resource
                             Image::make("", "images")
                                 ->dir("images")
                                 ->multiple()
-                                ->removable()
                         ]),
                     ]),
                 ])
