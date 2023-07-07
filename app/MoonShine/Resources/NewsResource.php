@@ -123,8 +123,7 @@ class NewsResource extends Resource
 
                 Image::make("Рисунки", "images")
                     ->dir("images")
-                    ->multiple()
-                    ->removable(),
+                    ->multiple(),
 
             ]),
 
@@ -159,8 +158,7 @@ class NewsResource extends Resource
             'images' => ["nullable", 'array',"min:1", "max:1",Rule::requiredIf(function (){
                 if (
                     request()->route()->getName() === "moonshine.news.store"
-                    &   request()->route()->getName() === "moonshine.news.update"
-                    & !request()->images
+                    && !request()->images
                 ){
                     throw  ValidationException::withMessages([
                         "Рисунок обязательный для заполнения"

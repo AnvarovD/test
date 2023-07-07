@@ -134,8 +134,6 @@ class BlogResource extends Resource
             Image::make("Рисунки", "images")
                 ->dir("images")
                 ->multiple()
-                ->removable()
-
         ];
     }
 
@@ -159,8 +157,7 @@ class BlogResource extends Resource
             'images' => ["nullable", 'array',"min:1", "max:1",Rule::requiredIf(function (){
                 if (
                     request()->route()->getName() === "moonshine.blogs.store"
-                    &   request()->route()->getName() === "moonshine.blogs.update"
-                    & !request()->images
+                    && !request()->images
                 ){
                     throw  ValidationException::withMessages([
                         "Рисунок обязательный для заполнения"
