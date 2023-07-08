@@ -7,6 +7,8 @@ use App\Models\Application;
 
 use MoonShine\Fields\Select;
 use MoonShine\Fields\Text;
+use MoonShine\Metrics\DonutChartMetric;
+use MoonShine\Metrics\ValueMetric;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
@@ -24,7 +26,11 @@ class ApplicationResource extends Resource
             Text::make('Имя', 'name')->readonly(),
             Text::make('Номер телефона/Email', 'phone')->readonly(),
             Text::make('Организация', 'organization')->readonly(),
-            Text::make('Описания', 'description')->readonly(),
+            Text::make('Описания', 'description', function($item) {
+                return mb_substr($item->description, 0, 50);
+            })
+                ->readonly(),
+
             Select::make('Статус', 'status')
                 ->options([
                     'Новая' => 'Новая',
@@ -61,6 +67,20 @@ class ApplicationResource extends Resource
     {
         return [
             FiltersAction::make(trans('moonshine::ui.filters')),
+        ];
+    }
+
+    public function metrics(): array
+    {
+        return [
+     DonutChartMetric::make('заявки')
+         ->values(
+             [
+                 'Новый' => Application::query()->where('status', 'Новая')->count(),
+                 'В обработке' => Application::query()->where('status', 'В обработке')->count(),
+                 'Закрыто' => Application::query()->where('status', 'Закрыто')->count(),
+             ]
+         ),
         ];
     }
 }
