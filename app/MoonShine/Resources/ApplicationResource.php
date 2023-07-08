@@ -27,7 +27,11 @@ class ApplicationResource extends Resource
             Text::make('Номер телефона/Email', 'phone')->readonly(),
             Text::make('Организация', 'organization')->readonly(),
             Text::make('Описания', 'description', function($item) {
-                return mb_substr($item->description, 0, 50);
+                if (request()->route()->getName() == "moonshine.applications.index"){
+                    return mb_substr($item->description, 0, 50);
+                }else {
+                    return $item->description;
+                }
             })
                 ->readonly(),
 
