@@ -47,20 +47,26 @@ class WorkResource extends Resource
                                 ->fieldContainer(false)->required(),
                         ]),
 
+                        Tab::make('Заголовок uz', [
+                            Text::make('Заголовок uz', 'title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
-                        Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz', 'title_uz')
-                                ->fieldContainer(false)
-                                ->hideOnIndex()->required(),
-                        ]),
+
                     ]),
 
                     Tabs::make([
+                        Tab::make('Под описание ru', [
+                            Text::make('Под описание ru', 'sub_title_ru')
+                                ->hideOnIndex()->required()
+                        ]),
 
                         Tab::make('Под описание uz', [
                             Text::make('Под описание uz', 'sub_title_uz')
@@ -72,10 +78,7 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Под описание ru', [
-                            Text::make('Под описание ru', 'sub_title_ru')
-                                ->hideOnIndex()->required()
-                        ]),
+
                     ]),
 
                     Checkbox::make('Показать на главной странице', 'is_main'),
@@ -117,17 +120,19 @@ class WorkResource extends Resource
                                 ->required()->hideOnIndex(),
                         ]),
 
+                        Tab::make('Заголовок uz', [
+                            Text::make('Заголовок uz', 'work_title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex()->required(),
+                        ]),
+
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'work_title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()->required(),
                         ]),
 
-                        Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz', 'work_title_uz')
-                                ->fieldContainer(false)
-                                ->hideOnIndex()->required(),
-                        ]),
+
                     ]),
 
                     Tabs::make([
@@ -136,15 +141,17 @@ class WorkResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
 
+                        Tab::make('Под описание uz', [
+                            Text::make('Под описание uz', 'work_sub_title_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
                         Tab::make('Под описание en', [
                             Text::make('Под описание en', 'work_sub_title_en')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Под описание uz', [
-                            Text::make('Под описание uz', 'work_sub_title_uz')
-                                ->hideOnIndex()->required()
-                        ]),
+
                     ]),
 
 //                    Tabs::make([
@@ -180,16 +187,18 @@ class WorkResource extends Resource
             Column::make([
                 Block::make('Meta', [
                     Tabs::make([
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Mata Заголовок uz', [
                             Text::make('Mata Заголовок uz', 'meta_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Mata Заголовок ru', [
-                            Text::make('Mata Заголовок ru', 'meta_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Mata Заголовок en', [
                             Text::make('Mata Заголовок en', 'meta_title_en')
@@ -200,15 +209,17 @@ class WorkResource extends Resource
 
                     Tabs::make([
 
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()
+                        ]),
+
                         Tab::make('Mata Описание uz', [
                             TinyMce::make('Mata Описание uz', 'meta_description_uz')
                                 ->hideOnIndex()
                         ]),
 
-                        Tab::make('Mata Описание ru', [
-                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
-                                ->hideOnIndex()
-                        ]),
+
 
                         Tab::make('Mata Описание en', [
                             TinyMce::make('Mata Описание en', 'meta_description_en')

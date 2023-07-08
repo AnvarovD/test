@@ -32,28 +32,34 @@ class FileResource extends SingletonResource
                         ->fieldContainer(false),
                 ]),
 
+                Tab::make('Заголовок uz', [
+                    Text::make('Заголовок uz','title_uz')
+                        ->fieldContainer(false)
+                        ->hideOnIndex(),
+                ]),
+
                 Tab::make('Заголовок en', [
                     Text::make('Заголовок en','title_en')
                         ->fieldContainer(false)
                         ->hideOnIndex(),
                 ]),
 
-                Tab::make('Заголовок uz', [
-                    Text::make('Заголовок uz','title_uz')
-                        ->fieldContainer(false)
-                        ->hideOnIndex(),
-                ]),
+
             ]),
             Tabs::make([
+
+                Tab::make('Описание ru', [
+                    TinyMce::make('Описание ru','description_ru')
+                        ->hideOnIndex(),
+                ]),
+
                 Tab::make('Описание uz', [
                     TinyMce::make('Описание uz','description_uz')
                         ->hideOnIndex(),
                 ]),
 
-                Tab::make('Описание ru', [
-                    TinyMce::make('Описание ru','description_ru')
-                    ->hideOnIndex(),
-                ]),
+
+
 
                 Tab::make('Описание en', [
                     TinyMce::make('Описание en','description_en')

@@ -83,7 +83,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 ->translatable()
                 ->icon('app'),
 
-            MenuItem::make('Лицензионное соглашение', new LicenseAgreementResource())
+            MenuItem::make('Пользовательское соглашение', new LicenseAgreementResource())
                 ->translatable()
                 ->icon('app'),
 

@@ -25,14 +25,16 @@ class LicenseAgreementResource extends SingletonResource
         return [
             ID::make()->sortable(),
             Tabs::make([
+                Tab::make('Описание ru', [
+                    TinyMce::make('Описание ru','description_ru'),
+                ]),
+
                 Tab::make('Описание uz', [
                     TinyMce::make('Описание uz','description_uz')
                         ->hideOnIndex(),
                 ]),
 
-                Tab::make('Описание ru', [
-                    TinyMce::make('Описание ru','description_ru'),
-                ]),
+
 
                 Tab::make('Описание en', [
                     TinyMce::make('Описание en','description_en')

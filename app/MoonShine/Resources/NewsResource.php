@@ -42,17 +42,19 @@ class NewsResource extends Resource
                                 ->fieldContainer(false),
                         ]),
 
+                        Tab::make('Заголовок uz', [
+                            Text::make('Заголовок uz', 'title_uz')
+                                ->fieldContainer(false)
+                                ->hideOnIndex(),
+                        ]),
+
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'title_en')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Заголовок uz', [
-                            Text::make('Заголовок uz', 'title_uz')
-                                ->fieldContainer(false)
-                                ->hideOnIndex(),
-                        ]),
+
                     ]),
 
                     Tabs::make([
@@ -62,15 +64,17 @@ class NewsResource extends Resource
                                 ->hideOnIndex()->required()
                         ]),
 
+                        Tab::make('Описание uz', [
+                            TinyMce::make('Описание ru', 'description_uz')
+                                ->hideOnIndex()->required()
+                        ]),
+
                         Tab::make('Описание en', [
                             TinyMce::make('Описание ru', 'description_en')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание uz', [
-                            TinyMce::make('Описание ru', 'description_uz')
-                                ->hideOnIndex()->required()
-                        ]),
+
 
                     ]),
                 ]),
@@ -84,16 +88,18 @@ class NewsResource extends Resource
 
                 Block::make('Meta', [
                     Tabs::make([
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Mata Заголовок uz', [
                             Text::make('Mata Заголовок uz', 'meta_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Mata Заголовок ru', [
-                            Text::make('Mata Заголовок ru', 'meta_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Mata Заголовок en', [
                             Text::make('Mata Заголовок en', 'meta_title_en')
@@ -104,15 +110,17 @@ class NewsResource extends Resource
 
                     Tabs::make([
 
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()
+                        ]),
+
                         Tab::make('Mata Описание uz', [
                             TinyMce::make('Mata Описание uz', 'meta_description_uz')
                                 ->hideOnIndex()
                         ]),
 
-                        Tab::make('Mata Описание ru', [
-                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
-                                ->hideOnIndex()
-                        ]),
+
 
                         Tab::make('Mata Описание en', [
                             TinyMce::make('Mata Описание en', 'meta_description_en')

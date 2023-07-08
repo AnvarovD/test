@@ -24,8 +24,8 @@ class ContactResource extends SingletonResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('адрес uz', 'address_uz'),
             Text::make('адрес ru', 'address_ru'),
+            Text::make('адрес uz', 'address_uz'),
             Text::make('адрес en', 'address_en'),
             Text::make('Линк для локации', 'location')->hideOnIndex(),
             Text::make('Email', 'email'),

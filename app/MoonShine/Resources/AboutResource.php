@@ -32,16 +32,18 @@ class AboutResource extends SingletonResource
             Column::make([
                 Block::make('Banner', [
                     Tabs::make([
+                        Tab::make('Заголовок ru', [
+                            Text::make('Заголовок ru', 'banner_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Заголовок uz', [
                             Text::make('Заголовок uz', 'banner_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru', 'banner_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'banner_title_en')
@@ -53,15 +55,17 @@ class AboutResource extends SingletonResource
 
                     Tabs::make([
 
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'banner_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
                         Tab::make('Описание uz', [
                             TinyMce::make('Описание uz', 'banner_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание ru', [
-                            TinyMce::make('Описание ru', 'banner_description_ru')
-                                ->hideOnIndex()->required()
-                        ]),
+
 
                         Tab::make('Описание en', [
                             TinyMce::make('Описание en', 'banner_description_en')
@@ -74,16 +78,18 @@ class AboutResource extends SingletonResource
 
                 Block::make('Content', [
                     Tabs::make([
+                        Tab::make('Заголовок ru', [
+                            Text::make('Заголовок ru', 'content_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Заголовок uz', [
                             Text::make('Заголовок uz', 'content_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru', 'content_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'content_title_en')
@@ -95,15 +101,17 @@ class AboutResource extends SingletonResource
 
                     Tabs::make([
 
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'content_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
                         Tab::make('Описание uz', [
                             TinyMce::make('Описание uz', 'content_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание ru', [
-                            TinyMce::make('Описание ru', 'content_description_ru')
-                                ->hideOnIndex()->required()
-                        ]),
+
 
                         Tab::make('Описание en', [
                             TinyMce::make('Описание en', 'content_description_en')
@@ -117,16 +125,18 @@ class AboutResource extends SingletonResource
 
                 Block::make('Footer', [
                     Tabs::make([
+                        Tab::make('Заголовок ru', [
+                            Text::make('Заголовок ru', 'footer_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Заголовок uz', [
                             Text::make('Заголовок uz', 'footer_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Заголовок ru', [
-                            Text::make('Заголовок ru', 'footer_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Заголовок en', [
                             Text::make('Заголовок en', 'footer_title_en')
@@ -136,16 +146,18 @@ class AboutResource extends SingletonResource
                     ]),
 
                     Tabs::make([
+                        Tab::make('Описание ru', [
+                            TinyMce::make('Описание ru', 'footer_description_ru')
+                                ->hideOnIndex()->required()
+                        ]),
+
 
                         Tab::make('Описание uz', [
                             TinyMce::make('Описание uz', 'footer_description_uz')
                                 ->hideOnIndex()->required()
                         ]),
 
-                        Tab::make('Описание ru', [
-                            TinyMce::make('Описание ru', 'footer_description_ru')
-                                ->hideOnIndex()->required()
-                        ]),
+
 
                         Tab::make('Описание en', [
                             TinyMce::make('Описание en', 'footer_description_en')
@@ -159,16 +171,18 @@ class AboutResource extends SingletonResource
 
                 Block::make('Meta', [
                     Tabs::make([
+                        Tab::make('Mata Заголовок ru', [
+                            Text::make('Mata Заголовок ru', 'meta_title_ru')
+                                ->fieldContainer(false),
+                        ]),
+
                         Tab::make('Mata Заголовок uz', [
                             Text::make('Mata Заголовок uz', 'meta_title_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex(),
                         ]),
 
-                        Tab::make('Mata Заголовок ru', [
-                            Text::make('Mata Заголовок ru', 'meta_title_ru')
-                                ->fieldContainer(false),
-                        ]),
+
 
                         Tab::make('Mata Заголовок en', [
                             Text::make('Mata Заголовок en', 'meta_title_en')
@@ -179,15 +193,17 @@ class AboutResource extends SingletonResource
 
                     Tabs::make([
 
+                        Tab::make('Mata Описание ru', [
+                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
+                                ->hideOnIndex()
+                        ]),
+
                         Tab::make('Mata Описание uz', [
                             TinyMce::make('Mata Описание uz', 'meta_description_uz')
                                 ->hideOnIndex()
                         ]),
 
-                        Tab::make('Mata Описание ru', [
-                            TinyMce::make('Mata Описание ru', 'meta_description_ru')
-                                ->hideOnIndex()
-                        ]),
+
 
                         Tab::make('Mata Описание en', [
                             TinyMce::make('Mata Описание en', 'meta_description_en')

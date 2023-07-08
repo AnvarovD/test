@@ -20,8 +20,8 @@ class ContactInfoResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Заголовок uz', 'title_uz'),
             Text::make('Заголовок ru', 'title_ru'),
+            Text::make('Заголовок uz', 'title_uz'),
             Text::make('Заголовок en', 'title_en'),
             Text::make('Имя и фамилия', 'person_name'),
             Text::make('Email', 'email'),
