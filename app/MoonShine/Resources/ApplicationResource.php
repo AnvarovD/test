@@ -77,14 +77,14 @@ class ApplicationResource extends Resource
     public function metrics(): array
     {
         return [
-     DonutChartMetric::make('заявки')
-         ->values(
-             [
-                 'Новый' => Application::query()->where('status', 'Новая')->count(),
-                 'В обработке' => Application::query()->where('status', 'В обработке')->count(),
-                 'Закрыто' => Application::query()->where('status', 'Закрыто')->count(),
-             ]
-         ),
+//     DonutChartMetric::make('заявки')
+//         ->values(
+//             [
+//                 'Новый' => Application::query()->where('status', 'Новая')->count(),
+//                 'В обработке' => Application::query()->where('status', 'В обработке')->count(),
+//                 'Закрыто' => Application::query()->where('status', 'Закрыто')->count(),
+//             ]
+//         ),
         ];
     }
 }
