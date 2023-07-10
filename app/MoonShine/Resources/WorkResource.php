@@ -269,7 +269,7 @@ class WorkResource extends Resource
                             'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
                         ]);
                     }
-                }), Rule::requiredIf(function () use($id) {
+                }), Rule::requiredIf(!request()->video_link), Rule::requiredIf(function () use($id) {
                     if ($id){
                         $work = Work::query()->find((int)$id);
                         if (request()->file && $work->video_link){
@@ -280,14 +280,14 @@ class WorkResource extends Resource
                     }
                 }),
             ],
-            'video_link' => ['nullable','string', Rule::excludeIf(function () {
+            'video_link' => ['nullable','string',  Rule::excludeIf(function () {
                 if (request()->video_link && request()->file) {
                     throw ValidationException::withMessages([
                         'video_link' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
                     ]);
                 }
 
-            }), Rule::requiredIf(function () use($id) {
+            }), Rule::requiredIf(!request()->file), Rule::requiredIf(function () use($id) {
                 if ($id){
                     $work = Work::query()->find((int)$id);
                     if (request()->video_link && $work->file){
