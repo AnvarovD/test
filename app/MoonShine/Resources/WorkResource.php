@@ -35,6 +35,7 @@ class WorkResource extends Resource
         }
 
         $item = $this->getItem();
+//        dd(request()->route()->getName());
         return [
             ID::make()->sortable(),
 
@@ -269,7 +270,7 @@ class WorkResource extends Resource
                             'file' => 'В Медиа файлах вы должны выбрать либо рисунок либо линк на видео.',
                         ]);
                     }
-                }), Rule::requiredIf(!request()->video_link), Rule::requiredIf(function () use($id) {
+                }), Rule::requiredIf(!request()->video_link && request()->route()->getName() == "moonshine.works.store"), Rule::requiredIf(function () use($id) {
                     if ($id){
                         $work = Work::query()->find((int)$id);
                         if (request()->file && $work->video_link){
@@ -287,7 +288,7 @@ class WorkResource extends Resource
                     ]);
                 }
 
-            }), Rule::requiredIf(!request()->file), Rule::requiredIf(function () use($id) {
+            }), Rule::requiredIf(!request()->file && request()->route()->getName() == "moonshine.works.store"), Rule::requiredIf(function () use($id) {
                 if ($id){
                     $work = Work::query()->find((int)$id);
                     if (request()->video_link && $work->file){
