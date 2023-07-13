@@ -38,7 +38,7 @@ services:
         container_name: shop-nginx
         restart: unless-stopped
         ports:
-            - 9080:80
+            - 9060:80
         volumes:
             - ./:/var/www
             - ./docker/nginx:/etc/nginx/conf.d/

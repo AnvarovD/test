@@ -56,16 +56,16 @@ class PostWorkResource extends Resource
                     ]),
 
                     Tabs::make([
+                        Tab::make('Описания ru', [
+                            TinyMce::make('Описания ru', 'description_ru')
+                                ->fieldContainer(false)
+                                ->required(),
+                        ]),
+
                         Tab::make('Описания uz', [
                             TinyMce::make('Описания uz', 'description_uz')
                                 ->fieldContainer(false)
                                 ->hideOnIndex()
-                                ->required(),
-                        ]),
-
-                        Tab::make('Описания ru', [
-                            TinyMce::make('Описания ru', 'description_ru')
-                                ->fieldContainer(false)
                                 ->required(),
                         ]),
 

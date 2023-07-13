@@ -21,7 +21,7 @@ class ClientResource extends Resource
     {
         return [
             ID::make()->sortable(),
-            Image::make('Рисунок', 'icon'),
+            Image::make('Рисунок', 'icon')->required(request()->route()->getName() == "moonshine.clients.create"),
         ];
     }
 

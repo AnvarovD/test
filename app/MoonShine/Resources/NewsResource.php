@@ -84,7 +84,7 @@ class NewsResource extends Resource
                     'page_id',
                     'title_ru'
                 )
-                    ->valuesQuery(fn(Builder $query) => $query->where('slug', 'news')) ,
+                    ->valuesQuery(fn(Builder $query) => $query->where('slug', 'news'))->hidden(),
 
                 Block::make('Meta', [
                     Tabs::make([

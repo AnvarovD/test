@@ -80,7 +80,7 @@ class BlogResource extends Resource
                 BelongsTo::make(
                     'Родительская Страница',
                     'page_id',
-                    'title_ru'),
+                    'title_ru')->hidden(),
 
                 Block::make('Meta', [
                     Tabs::make([
