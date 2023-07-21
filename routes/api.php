@@ -47,6 +47,8 @@ Route::prefix('/about')->group(function (){
 
 
 Route::post('/applications', [WorkApiController::class, 'applications']);
+Route::post('/jobApplicationCreate', [WorkApiController::class, 'jobApplicationCreate']);
+Route::get('/vacancys', [WorkApiController::class, 'vacancys']);
 Route::get('/licenseAgreement', [WorkApiController::class, 'getLicenseAgreement']);
 Route::get('/contacts', [WorkApiController::class, 'contacts']);
 Route::get('/filesAndNetworks', [WorkApiController::class, 'filesAndNetworks']);

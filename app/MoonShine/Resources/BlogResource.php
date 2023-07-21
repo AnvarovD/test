@@ -77,6 +77,7 @@ class BlogResource extends Resource
 
                     ]),
                 ]),
+
                 BelongsTo::make(
                     'Родительская Страница',
                     'page_id',

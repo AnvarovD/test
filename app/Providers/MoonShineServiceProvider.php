@@ -10,12 +10,14 @@ use App\MoonShine\Resources\ClientResource;
 use App\MoonShine\Resources\ContactInfoResource;
 use App\MoonShine\Resources\ContactResource;
 use App\MoonShine\Resources\FileResource;
+use App\MoonShine\Resources\JobApplicationResource;
 use App\MoonShine\Resources\LicenseAgreementResource;
 use App\MoonShine\Resources\NewsResource;
 use App\MoonShine\Resources\PageResource;
 use App\MoonShine\Resources\PostResource;
 use App\MoonShine\Resources\PostWorkResource;
 use App\MoonShine\Resources\SocialNetworkResource;
+use App\MoonShine\Resources\VacancyResource;
 use App\MoonShine\Resources\WorkContentResource;
 use App\MoonShine\Resources\WorkResource;
 use Illuminate\Support\ServiceProvider;
@@ -46,6 +48,14 @@ class MoonShineServiceProvider extends ServiceProvider
 //            MenuItem::make('Категории', new PageResource())
 //                ->translatable()
 //                ->icon('app'),
+
+            MenuItem::make('Вакансии', new VacancyResource())
+                ->translatable()
+                ->icon('app'),
+
+            MenuItem::make('Заявки на вакансии', new JobApplicationResource())
+                ->translatable()
+                ->icon('app'),
 
             MenuItem::make('Новости', new NewsResource())
                 ->translatable()

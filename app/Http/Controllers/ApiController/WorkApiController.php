@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\ApiController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\JobApplicationCreateRequest;
 use App\Models\About;
 use App\Models\Application;
 use App\Models\Client;
 use App\Models\Contact;
 use App\Models\ContactInfo;
 use App\Models\File;
+use App\Models\JobApplication;
 use App\Models\LicenseAgreement;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\PostWork;
 use App\Models\SocialNetwork;
+use App\Models\Vacancy;
 use App\Models\Work;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -180,6 +183,23 @@ class WorkApiController extends Controller
         return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
+    public function jobApplicationCreate(JobApplicationCreateRequest $request): void
+    {
+        $name = now()->timestamp.".{$request->file->getClientOriginalName()}";
+        $path = $request->file('file')->storeAs('files', $name, 'public');
+
+        $jobApplication = new JobApplication();
+        $jobApplication->F_I_O = $request->input('F_I_O');
+        $jobApplication->contact = $request->input('contact');
+        $jobApplication->file = "/{$path}";
+        $jobApplication->status = "новая";
+        $jobApplication->save();
+    }
+
+    public function vacancys(): JsonResponse
+    {
+        return new JsonResponse(Vacancy::all());
+    }
 
     public function index(Request $request): JsonResponse
     {
