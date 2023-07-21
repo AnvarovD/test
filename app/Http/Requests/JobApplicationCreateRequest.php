@@ -19,7 +19,7 @@ class JobApplicationCreateRequest extends FormRequest
             "contact" => ['required', 'string'],
             "file" => [
                 'required',
-                File::types(['docx','pdf','xls'])->max(3 * 1024)
+                File::types(['doc','pdf','jpg','png'])->max(3 * 1024)
             ],
         ];
     }
