@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class JobApplicationCreateRequest extends FormRequest
 {
@@ -16,7 +17,10 @@ class JobApplicationCreateRequest extends FormRequest
         return [
             "F_I_O" => ['required', 'string'],
             "contact" => ['required', 'string'],
-            "file" => ['required', 'file'],
+            "file" => [
+                'required',
+                File::types(['docx','pdf','xls'])->max(3 * 1024)
+            ],
         ];
     }
 }

@@ -25,7 +25,7 @@ class JobApplicationResource extends Resource
             ID::make()->sortable(),
             Text::make('Ф.И.О', 'F_I_O')->fieldContainer(false)->readonly(),
             Text::make('Номер телефона/email', 'contact')->fieldContainer(false)->readonly(),
-            File::make('Файл', 'file')->fieldContainer(false)->readonly(),
+            File::make('Файл', 'file'),
             Text::make('Дата заявки', 'created_at')->fieldContainer()->readonly(),
             Select::make('Статус', 'status')
                 ->options([
