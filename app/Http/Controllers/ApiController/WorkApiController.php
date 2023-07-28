@@ -221,7 +221,7 @@ class WorkApiController extends Controller
         $bot = new ProjectTelegramBot();
         $data = [
             'chat_id' => -1001965438185,
-            'caption' => "Заявки на проекты
+            'caption' => "Заявки на вакансии
 Имя: {$jobApplication->F_I_O}
 Номер телефона: {$jobApplication->contact}",
         ];
