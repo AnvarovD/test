@@ -217,8 +217,7 @@ class WorkApiController extends Controller
         $jobApplication->status = "новая";
         $jobApplication->save();
 
-//        $bot = new VacancyTelegramBot();
-        $bot = new ProjectTelegramBot();
+        $bot = new VacancyTelegramBot();
         $data = [
             'chat_id' => -1001965438185,
             'caption' => "Заявки на вакансии

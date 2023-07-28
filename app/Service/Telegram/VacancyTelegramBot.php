@@ -14,6 +14,7 @@ class VacancyTelegramBot extends Telegram
 
     public function setWebHook(): array
     {
-       return Http::get('https://api.telegram.org/'. $this->getBot() . '/setWebhook?url=https://da80-84-54-94-170.ngrok-free.app/webhook')->json();
+        return [];
+//       return Http::get('https://api.telegram.org/'. $this->getBot() . '/setWebhook?url=https://da80-84-54-94-170.ngrok-free.app/webhook')->json();
     }
 }
