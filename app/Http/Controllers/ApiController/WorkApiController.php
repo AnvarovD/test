@@ -18,6 +18,9 @@ use App\Models\PostWork;
 use App\Models\SocialNetwork;
 use App\Models\Vacancy;
 use App\Models\Work;
+use App\Service\Telegram\ProjectTelegramBot;
+use App\Service\Telegram\VacancyTelegramBot;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -161,7 +164,12 @@ class WorkApiController extends Controller
         return new JsonResponse($offer);
     }
 
-    public function applications(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws RequestException
+     */
+    public function applications(Request $request): JsonResponse
     {
         $validated = $request->validate(
             [
@@ -180,6 +188,19 @@ class WorkApiController extends Controller
         $application->status = 'Новая';
         $application->save();
 
+        $bot = new ProjectTelegramBot();
+
+        $data = [
+            'chat_id' => -1001965438185,
+            'text' => "Заявки на проекты
+Имя: {$application->name}
+Номер телефона или Emal: {$application->phone}
+Организация: {$application->organization}
+Описания: {$application->description}",
+        ];
+
+        $bot->sendMessage($data);
+
         return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
@@ -194,6 +215,15 @@ class WorkApiController extends Controller
         $jobApplication->file = "/{$path}";
         $jobApplication->status = "новая";
         $jobApplication->save();
+
+        $bot = new VacancyTelegramBot();
+        $data = [
+            'chat_id' => -1001965438185,
+            'text' => "Заявки на проекты
+Имя: {$jobApplication->F_I_O}
+Номер телефона: {$jobApplication->contact}",
+        ];
+//        $bot->sendDocument($data, $jobApplication->file);
     }
 
     public function vacancys(): JsonResponse
