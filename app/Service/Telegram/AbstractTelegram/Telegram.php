@@ -56,10 +56,10 @@ abstract class Telegram
         return $name;
     }
 
-    public function sendDocument(array $data, string $file_path): array
+    public function sendDocument(array $data, string $file_path, $name): array
     {
        return $this->baseRequest()
-            ->attach('document', Storage::get('/public'.$file_path), 'document.png')
+            ->attach('document', Storage::get('/public'.$file_path), $name)
             ->post($this->getBot() . '/sendDocument', $data)->json();
     }
 

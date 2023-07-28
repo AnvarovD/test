@@ -24,6 +24,7 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class WorkApiController extends Controller
 {
@@ -216,14 +217,15 @@ class WorkApiController extends Controller
         $jobApplication->status = "новая";
         $jobApplication->save();
 
-        $bot = new VacancyTelegramBot();
+//        $bot = new VacancyTelegramBot();
+        $bot = new ProjectTelegramBot();
         $data = [
             'chat_id' => -1001965438185,
-            'text' => "Заявки на проекты
+            'caption' => "Заявки на проекты
 Имя: {$jobApplication->F_I_O}
 Номер телефона: {$jobApplication->contact}",
         ];
-//        $bot->sendDocument($data, $jobApplication->file);
+        $bot->sendDocument($data, $jobApplication->file, $name);
     }
 
     public function vacancys(): JsonResponse
