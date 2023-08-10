@@ -205,7 +205,7 @@ class WorkApiController extends Controller
         return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
-    public function jobApplicationCreate(JobApplicationCreateRequest $request): void
+    public function jobApplicationCreate(JobApplicationCreateRequest $request): JsonResponse
     {
         $name = now()->timestamp.".{$request->file->getClientOriginalName()}";
         $path = $request->file('file')->storeAs('files', $name, 'public');
@@ -225,6 +225,8 @@ class WorkApiController extends Controller
 Номер телефона: {$jobApplication->contact}",
         ];
         $bot->sendDocument($data, $jobApplication->file, $name);
+
+return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
     public function vacancys(): JsonResponse
