@@ -226,7 +226,7 @@ class WorkApiController extends Controller
         ];
         $bot->sendDocument($data, $jobApplication->file, $name);
 
-return new JsonResponse(["message" => "Заявка создана успешно"]);
+        return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
     public function vacancys(): JsonResponse
