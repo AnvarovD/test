@@ -225,6 +225,8 @@ class WorkApiController extends Controller
 Номер телефона: {$jobApplication->contact}",
         ];
         $bot->sendDocument($data, $jobApplication->file, $name);
+
+        return new JsonResponse(["message" => "Заявка создана успешно"]);
     }
 
     public function vacancys(): JsonResponse
